@@ -6222,7 +6222,7 @@ select.custom-select-arrow,
     gap: 12px;
     margin-bottom: 18px;
     color: var(--theme-gold);
-    font-size: 15px;
+    font-size: 28px;
     font-weight: 700;
     letter-spacing: 0.22em;
     line-height: 1;
@@ -6901,6 +6901,17 @@ select.custom-select-arrow,
     line-height: 1;
 }
 
+.service-workflow-section .service-workflow__cta[data-aos],
+.service-workflow-section .service-workflow__cta[data-aos].aos-init,
+.service-workflow-section .service-workflow__cta[data-aos].aos-animate {
+    opacity: 1 !important;
+    transform: none !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+    transition-property: none !important;
+    animation: none !important;
+}
+
 /* Larger service-page package cards: applies only to the "Our Packages" component. */
 @media (min-width: 992px) {
     .pricing-section--editing-process > .container {
@@ -7017,7 +7028,7 @@ select.custom-select-arrow,
     }
 
     .editing-process-cta {
-        margin-top: 20px;
+        /* margin-top: 20px; */
     }
 }
 
@@ -7553,6 +7564,14 @@ body.service-reviews-enhanced .homepage-reviews-slider .homepage-review-card--ce
 .floatbutton.hidden-mob,
 .fixedform-1,
 .fixedform-2 {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.bottom-reviews,
+#bottomReviews {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
@@ -8476,6 +8495,10 @@ button.btn-form * {
     font-size: clamp(38px, 3.35vw, 60px) !important;
     line-height: 1.12 !important;
     letter-spacing: -0.035em !important;
+    text-shadow:
+        0 0 28px rgba(0, 0, 0, 0.88),
+        0 0 54px rgba(0, 0, 0, 0.66),
+        0 8px 26px rgba(0, 0, 0, 0.58) !important;
 }
 
 .service-hero-bg p.my-4 {
@@ -8484,6 +8507,10 @@ button.btn-form * {
     color: #ffffff !important;
     font-size: clamp(17px, 1.22vw, 22px) !important;
     line-height: 1.62 !important;
+    text-shadow:
+        0 0 18px rgba(0, 0, 0, 0.8),
+        0 0 32px rgba(0, 0, 0, 0.58),
+        0 5px 16px rgba(0, 0, 0, 0.46) !important;
 }
 
 .service-hero-bg p.d-flex {
@@ -8502,8 +8529,17 @@ button.btn-form * {
     row-gap: 18px !important;
 }
 
+.service-hero-bg .header-counter .count {
+    text-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.34),
+        0 9px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
 .service-hero-bg .header-counter .count-title {
     color: #ffffff !important;
+    text-shadow:
+        0 3px 8px rgba(0, 0, 0, 0.32),
+        0 7px 16px rgba(0, 0, 0, 0.16) !important;
 }
 
 .service-hero-bg .hero-form-shell {
@@ -8676,7 +8712,31 @@ button.btn-form * {
 
     .service-hero-bg p.d-flex {
         justify-content: center !important;
-        margin-bottom: 34px !important;
+        gap: 12px !important;
+        margin-bottom: 22px !important;
+    }
+
+    .service-hero-bg .header-counter {
+        margin-top: 6px !important;
+    }
+
+    .service-hero-bg .header-counter .row {
+        row-gap: 12px !important;
+    }
+
+    .service-hero-bg .header-counter .row > div {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+
+    .service-hero-bg .header-counter .count {
+        font-size: clamp(30px, 8vw, 44px) !important;
+        line-height: 0.95 !important;
+    }
+
+    .service-hero-bg .header-counter .count-title {
+        font-size: 11px !important;
+        line-height: 1.25 !important;
     }
 
     .service-hero-bg .hero-form-card,
@@ -8693,11 +8753,16 @@ button.btn-form * {
 
     .service-hero-bg h1 {
         max-width: 100% !important;
-        font-size: clamp(38px, 10vw, 52px) !important;
+        font-size: clamp(28px, 8.2vw, 40px) !important;
+        line-height: 1.04 !important;
+        margin-bottom: 14px !important;
     }
 
     .service-hero-bg p.my-4 {
         max-width: 100% !important;
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 18px !important;
     }
 }
 
@@ -8881,6 +8946,14 @@ body.service-reviews-enhanced .homepage-reviews-slider .homepage-review-card--ce
         height: 42px !important;
     }
 
+    html body .homepage-main-nav.is-mobile-ready .homepage-navbar::after {
+        content: "" !important;
+        display: block !important;
+        flex: 0 0 42px !important;
+        width: 42px !important;
+        height: 42px !important;
+    }
+
     html body .homepage-main-nav.is-mobile-ready .homepage-centered-nav,
     html body.homepage-index .homepage-main-nav.is-mobile-ready .homepage-centered-nav,
     html body.about-page .homepage-main-nav.is-mobile-ready .homepage-centered-nav,
@@ -8909,6 +8982,7 @@ body.service-reviews-enhanced .homepage-reviews-slider .homepage-review-card--ce
     html body.homepage-index .homepage-main-nav.is-mobile-ready .homepage-centered-nav__logo,
     html body.about-page .homepage-main-nav.is-mobile-ready .homepage-centered-nav__logo {
         display: block !important;
+        flex: 0 0 auto !important;
         order: 0 !important;
         grid-column: auto !important;
         margin: 0 !important;

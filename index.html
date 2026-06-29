@@ -429,7 +429,7 @@
     <!--                "priceRange": "$$",-->
     <!--                "address": {-->
     <!--                    "@type": "PostalAddress",-->
-    <!--                    "streetAddress": "2630 W Boward Blvd",-->
+    <!--                    "streetAddress": "2630 W Broward Blvd Suite 203 #1134 33312",-->
     <!--                    "addressLocality": "Fort Lauderdale",-->
     <!--                    "addressRegion": "FL",-->
     <!--                    "postalCode": "3312",-->
@@ -448,9 +448,9 @@
             "url": "https://hancockpublishers.com/ ",
             "logo": "https://hancockpublishers.com/assets/img/logo.png ",
             "sameAs": [
-                "https://www.facebook.com/hancockpublisher",
+                "https://www.facebook.com/share/199TppQJES/?mibextid=wwXIfr",
                 "https://www.linkedin.com/company/hancockpublishers",
-                "https://www.instagram.com/hancockpublishers/",
+                "https://www.instagram.com/primebookpublishinglabs?igsh=enMycTZ1c3R1N3h3",
                 "https://twitter.com/hanpublishers",
                 "https://www.youtube.com/@HancockPublishers",
                 "https://www.pinterest.com/hancockpublishers/",
@@ -470,7 +470,7 @@
             "priceRange": "$$",
             "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "2630 W Boward Blvd",
+                "streetAddress": "2630 W Broward Blvd Suite 203 #1134 33312",
                 "addressLocality": "Fort Lauderdale",
                 "addressRegion": "FL",
                 "postalCode": "3312",
@@ -494,9 +494,9 @@
                 "closes": "18:00"
             },
             "sameAs": [
-                "https://www.facebook.com/hancockpublisher",
+                "https://www.facebook.com/share/199TppQJES/?mibextid=wwXIfr",
                 "https://www.linkedin.com/company/hancockpublishers",
-                "https://www.instagram.com/hancockpublishers/",
+                "https://www.instagram.com/primebookpublishinglabs?igsh=enMycTZ1c3R1N3h3",
                 "https://twitter.com/hanpublishers",
                 "https://www.youtube.com/@HancockPublishers",
                 "https://www.pinterest.com/hancockpublishers/",
@@ -745,11 +745,11 @@ document.addEventListener("DOMContentLoaded", function () {
     aria-hidden="false">
     <ul>
       <li class="fab-fa-facebook" len="0">
-        <a href="https://www.facebook.com/hancockpublisher" target="_blank" rel="noopener" class="fab-fa-facebook"><i
+        <a href="https://www.facebook.com/share/199TppQJES/?mibextid=wwXIfr" target="_blank" rel="noopener" class="fab-fa-facebook"><i
             class="fab fa-facebook" aria-hidden="true"></i></a>
       </li>
       <li class="fab-fa-instagram" len="0">
-        <a href="https://www.instagram.com/hancockpublishers/" target="_blank" rel="noopener"
+        <a href="https://www.instagram.com/primebookpublishinglabs?igsh=enMycTZ1c3R1N3h3" target="_blank" rel="noopener"
           class="fab-fa-instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
       </li>
       <li class="fab-fa-twitter" len="0">
@@ -2835,6 +2835,10 @@ document.addEventListener("DOMContentLoaded", function () {
     margin-bottom: 12px !important;
     font-size: clamp(22px, 1.8vw, 31px) !important;
     line-height: 1.16 !important;
+    text-shadow:
+      0 0 22px rgba(0, 0, 0, 0.84),
+      0 0 42px rgba(0, 0, 0, 0.62),
+      0 6px 22px rgba(0, 0, 0, 0.54) !important;
   }
 
   body.homepage-index #hero h2 {
@@ -2842,11 +2846,19 @@ document.addEventListener("DOMContentLoaded", function () {
     margin-bottom: 24px !important;
     font-size: clamp(48px, 4.4vw, 78px) !important;
     line-height: 1.08 !important;
+    text-shadow:
+      0 0 28px rgba(0, 0, 0, 0.88),
+      0 0 54px rgba(0, 0, 0, 0.66),
+      0 8px 26px rgba(0, 0, 0, 0.58) !important;
   }
 
   body.homepage-index #hero p.mt-3 {
     max-width: 690px !important;
     margin-bottom: 30px !important;
+    text-shadow:
+      0 0 18px rgba(0, 0, 0, 0.8),
+      0 0 32px rgba(0, 0, 0, 0.58),
+      0 5px 16px rgba(0, 0, 0, 0.46) !important;
   }
 
   body.homepage-index #hero p.d-flex {
@@ -2863,6 +2875,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   body.homepage-index #hero .header-counter .row {
     row-gap: 18px !important;
+  }
+
+  body.homepage-index #hero .header-counter .count {
+    text-shadow:
+      0 4px 10px rgba(0, 0, 0, 0.34),
+      0 9px 20px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  body.homepage-index #hero .header-counter .count-title {
+    text-shadow:
+      0 3px 8px rgba(0, 0, 0, 0.32),
+      0 7px 16px rgba(0, 0, 0, 0.16) !important;
   }
 
   body.homepage-index #hero .hero-form-card {
@@ -3193,7 +3217,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
     body.homepage-index #hero p.d-flex {
       justify-content: center !important;
-      margin-bottom: 34px !important;
+      gap: 12px !important;
+      margin-bottom: 22px !important;
+    }
+
+    body.homepage-index #hero .header-counter {
+      margin-top: 6px !important;
+    }
+
+    body.homepage-index #hero .header-counter .row {
+      row-gap: 12px !important;
+    }
+
+    body.homepage-index #hero .header-counter .row > div {
+      padding-left: 8px !important;
+      padding-right: 8px !important;
+    }
+
+    body.homepage-index #hero .header-counter .count {
+      font-size: clamp(30px, 8vw, 44px) !important;
+      line-height: 0.95 !important;
+    }
+
+    body.homepage-index #hero .header-counter .count-title {
+      font-size: 11px !important;
+      line-height: 1.25 !important;
     }
 
     body.homepage-index #hero .hero-form-card {
@@ -3218,12 +3266,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     body.homepage-index header#hero.masthead h1.home {
-      font-size: 22px !important;
+      font-size: 14px !important;
+      line-height: 1.15 !important;
+      margin-bottom: 10px !important;
     }
 
     body.homepage-index header#hero.masthead h2[style] {
       max-width: 100% !important;
-      font-size: clamp(38px, 10vw, 52px) !important;
+      font-size: clamp(28px, 8.2vw, 40px) !important;
+      line-height: 1.04 !important;
+      margin-bottom: 14px !important;
+    }
+
+    body.homepage-index #hero p.mt-3 {
+      max-width: 100% !important;
+      font-size: 14px !important;
+      line-height: 1.5 !important;
+      margin-bottom: 18px !important;
     }
   }
 </style>
@@ -3473,59 +3532,59 @@ document.addEventListener("DOMContentLoaded", function () {
         </p>
         <div class="homepage-service-stack__list">
             <div class="homepage-service-stack__item" data-aos="fade-up" data-aos-duration="700">
-                <a class="homepage-service-stack__card" href="audiobook-service.html">
+                <a class="homepage-service-stack__card" href="book-publishing-services.html">
                     <span class="homepage-service-stack__number">01</span>
                     <span class="homepage-service-stack__service">BOOK PUBLISHING</span>
                     <span class="homepage-service-stack__description">Turn your manuscript into a professionally published book with expert guidance, formatting and distribution support.</span>
                 </a>
             </div>
             <div class="homepage-service-stack__item" data-aos="fade-up" data-aos-duration="750">
-                <a class="homepage-service-stack__card" href="author-website-design.html">
+                <a class="homepage-service-stack__card" href="book-editing-services.html">
                     <span class="homepage-service-stack__number">02</span>
                     <span class="homepage-service-stack__service">BOOK EDITING</span>
                     <span class="homepage-service-stack__description">Refine your manuscript with professional editing that improves clarity, consistency, readability and overall quality.</span>
                 </a>
             </div>
             <div class="homepage-service-stack__item" data-aos="fade-up" data-aos-duration="800">
-                <a class="homepage-service-stack__card" href="book-editing-services.html">
+                <a class="homepage-service-stack__card" href="book-cover-design.html">
                     <span class="homepage-service-stack__number">03</span>
                     <span class="homepage-service-stack__service">BOOK COVER DESIGN</span>
                     <span class="homepage-service-stack__description">Capture attention with a custom cover designed to represent your story and attract the right audience.</span>
                 </a>
             </div>
             <div class="homepage-service-stack__item" data-aos="fade-up" data-aos-duration="850">
-                <a class="homepage-service-stack__card" href="book-publishing-services.html">
+                <a class="homepage-service-stack__card" href="book-marketing-services.html">
                     <span class="homepage-service-stack__number">04</span>
                     <span class="homepage-service-stack__service">BOOK MARKETING</span>
                     <span class="homepage-service-stack__description">Increase your book's visibility through targeted marketing strategies designed to reach more readers and drive sales.</span>
                 </a>
             </div>
             <div class="homepage-service-stack__item" data-aos="fade-up" data-aos-duration="900">
-                <a class="homepage-service-stack__card" href="ghostwriting-services.html">
+                <a class="homepage-service-stack__card" href="author-website-design.html">
                     <span class="homepage-service-stack__number">05</span>
                     <span class="homepage-service-stack__service">AUTHOR WEBSITES</span>
                     <span class="homepage-service-stack__description">Build your online presence with a professional author website that showcases your books and brand.</span>
                 </a>
             </div>
             <div class="homepage-service-stack__item" data-aos="fade-up" data-aos-duration="950">
-                <a class="homepage-service-stack__card" href="book-marketing-services.html">
+                <a class="homepage-service-stack__card" href="book-illustration-services.html">
                     <span class="homepage-service-stack__number">06</span>
                     <span class="homepage-service-stack__service">ILLUSTRATION SERVICES</span>
                     <span class="homepage-service-stack__description">Bring your ideas to life with custom illustrations perfect for children's books, novels and specialty projects.</span>
                 </a>
             </div>
             <div class="homepage-service-stack__item" data-aos="fade-up" data-aos-duration="1000">
-                <a class="homepage-service-stack__card" href="book-illustration-services.html">
+                <a class="homepage-service-stack__card" href="audiobook-service.html">
                     <span class="homepage-service-stack__number">07</span>
                     <span class="homepage-service-stack__service">AUDIOBOOK PRODUCTION</span>
                     <span class="homepage-service-stack__description">Expand your reach with professionally narrated audiobooks produced for today's growing audio audience.</span>
                 </a>
             </div>
             <div class="homepage-service-stack__item" data-aos="fade-up" data-aos-duration="1050">
-                <a class="homepage-service-stack__card" href="book-cover-design.html">
+                <a class="homepage-service-stack__card" href="ghostwriting-services.html">
                     <span class="homepage-service-stack__number">08</span>
-                    <span class="homepage-service-stack__service">GLOBAL DISTRIBUTION</span>
-                    <span class="homepage-service-stack__description">Make your book available across major online retailers and platforms through streamlined distribution services.</span>
+                    <span class="homepage-service-stack__service">GHOSTWRITING</span>
+                    <span class="homepage-service-stack__description">Work with experienced ghostwriters who can turn your ideas, notes and expertise into a polished manuscript that sounds true to your voice.</span>
                 </a>
             </div>
         </div>
@@ -4225,7 +4284,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <img src="assets/img/brands/kobo.svg" class="img-fluid" alt="Rakuten Kobo" title="Rakuten Kobo">
             </figure>
             <figure class="homepage-platforms__card" data-aos="zoom-in-left" data-aos-duration="1000">
-                <img src="assets/img/brands/spotify.svg" class="img-fluid" alt="Spotify" title="Spotify">
+                <img src="assets/img/brands/spotify.png" class="img-fluid" alt="Spotify" title="Spotify">
             </figure>
             <figure class="homepage-platforms__card homepage-platforms__card--cta" data-aos="zoom-in-left" data-aos-duration="1000">
                 <div class="p-card-content" style="color: #fff !important;">Want To Publish Your<br>Own Book? <span><a href="#" class="cta_for_emb_form">Yes!</a></span></div>
@@ -4629,7 +4688,7 @@ document.addEventListener("DOMContentLoaded", function () {
 								<li><a href="https://www.trustpilot.com/review/primebookpublishinglabs.com" ><img
 								src="assets/img/review/trustpilot-logo.png" class="img-fluid review-img" alt="Trustpilot"
 								title="Trustpilot"></a></li>  -->
-					<!-- <li><a href="https://www.facebook.com/hancockpublisher" target="_blank"><img src="assets/img/review/fb.png"
+					<!-- <li><a href="https://www.facebook.com/share/199TppQJES/?mibextid=wwXIfr" target="_blank"><img src="assets/img/review/fb.png"
 								class="img-fluid review-img" alt=""></a></li> -->
 				
 			<!-- <div class="col-lg-4">
@@ -5541,14 +5600,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="site-footer-v2__brand">
                     <a href="index.html"><img src="assets/img/prime-logo-full.png" alt="Prime Book Publishing Labs" title="Prime Book Publishing Labs"></a>
                 </div>
-                <div class="site-footer-v2__address"><strong>Mailing Address:</strong><a href="https://maps.google.com/?q=2630%20W%20Boward%20Blvd,%20Fort%20Lauderdale,%20FL%203312" target="_blank" rel="noopener"><div>2630 W Boward Blvd</div><div>Fort Lauderdale, FL 3312</div></a></div>
+                <div class="site-footer-v2__address"><strong>Mailing Address:</strong><a href="https://maps.google.com/?q=2630%20W%20Broward%20Blvd%20Suite%20203%20%231134%2033312,%20Fort%20Lauderdale,%20United%20States" target="_blank" rel="noopener"><div>2630 W Broward Blvd Suite 203 #1134 33312</div><div>Fort Lauderdale, United States</div></a></div>
                 <div class="site-footer-v2__contact">
                     <a href="mailto:info@primebookpublishinglabs.com">info@primebookpublishinglabs.com</a>
                     <a href="tel:+14076800272">(407) 680-0272</a>
                 </div>
                 <div class="site-footer-v2__social">
-                    <a href="https://www.facebook.com/hancockpublisher" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/hancockpublishers/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/share/199TppQJES/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/primebookpublishinglabs?igsh=enMycTZ1c3R1N3h3" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>

@@ -75,6 +75,8 @@ This section is more important than older notes below if they conflict.
 - The homepage is still the most special-case file in the repo.
 - Shared/sitewide styling is mostly controlled by late overrides near the bottom of `assets/css/main.css`.
 - The three newer editorial pages have their own header/hero/button overrides in `assets/css/editorial-pages.css`.
+- `about-us-new.html` now uses a custom about-only hero layout with the existing `assets/img/page-heroes/about-us-hero.png` background, a centered glass panel, screenshot-matched About Us copy using the Prime Book Publishing Labs name, and four glass stat cards below it.
+- `portfolio-new.html` and `reviews-new.html` hero copy now also use scoped text-shadow rules in `assets/css/editorial-pages.css` for the hero kicker, heading, and body copy.
 - If a visual change “does nothing,” there is usually a later override or page-specific stylesheet beating it.
 
 ## Current Header System
@@ -174,10 +176,10 @@ Canonical sitewide contact details are now:
 - WhatsApp:
   - link target: `https://wa.me/19544107418`
 - mailing address:
-  - `2630 W Boward Blvd`
-  - `Fort Lauderdale, FL 3312`
+  - `2630 W Broward Blvd Suite 203 #1134 33312`
+  - `Fort Lauderdale, United States`
   - footer/address blocks should link to:
-    - `https://maps.google.com/?q=2630%20W%20Boward%20Blvd,%20Fort%20Lauderdale,%20FL%203312`
+    - `https://maps.google.com/?q=2630%20W%20Broward%20Blvd%20Suite%20203%20%231134%2033312,%20Fort%20Lauderdale,%20United%20States`
 
 Footer review logo links are now:
 
@@ -716,8 +718,14 @@ These are the major changes already made in this project:
 - `.brand-font` uses the shared metallic gold text treatment but must remain `display: inline`; do not set it to `inline-block`, because longer highlighted phrases jump to a new line instead of wrapping naturally with the heading text.
 - Section-aware buttons: light service showcase sections using `.complete-Solution-section.bg-grdient` must receive dark navy buttons. The shared detector in `assets/js/main.js` has a specific `isLightShowcaseSection()` exception so the cream gradient is not mistaken for a dark/background-image section.
 - Phone header: `assets/js/main.js` now enhances every `.homepage-main-nav` with a generated hamburger button and cloned mobile menu, while `assets/css/main.css` has a final `max-width: 767px` override that hides desktop nav links, keeps only the full logo visible on phone, and prevents the scrolled-state compact mark from replacing it. Desktop/tablet header behavior should remain unchanged.
+- Mobile header centering fix: the final phone-only `.homepage-main-nav.is-mobile-ready .homepage-navbar` rules in `assets/css/main.css` now reserve equal 42px spacer blocks on both left and right so the full logo stays truly centered even though the hamburger button is absolutely positioned.
 - Sitewide loading screens that use `#loading-screen` now display `assets/img/prime-logo.png` instead of the old favicon image. Head favicon links were intentionally left unchanged.
 - Navigation Services behavior: the Services parent item is now a dropdown trigger only. `assets/js/main.js` prevents navigation on the parent Services link, keeps desktop hover behavior, and turns the mobile Services item into a collapsible button so the submenu is not always expanded.
+- Homepage and service-page hero copy now uses a stronger black text shadow for readability over image backgrounds. The homepage version is controlled in the late hero override block inside `index.html`; service-page hero copy uses the shared `.service-hero-bg` rules in `assets/css/main.css`.
+- Mobile hero sizing for the homepage and service pages is now more compact: phone-only overrides reduce hero heading size, body copy size/spacing, CTA spacing, and counter number/label sizing in the homepage block inside `index.html` and the shared service hero mobile block in `assets/css/main.css`.
+- Homepage `Services We Offer` cards in `index.html` were remapped so each visible card now points to its matching service page: publishing, editing, cover design, marketing, author websites, illustration, audiobook, and ghostwriting. The last card’s heading/description were also updated from global distribution copy to ghostwriting copy.
+- The legacy floating review widget rendered as `.bottom-reviews` / `#bottomReviews` is now disabled sitewide through `assets/css/main.css` so it no longer appears on the homepage, service pages, or legacy interior pages that still include the old widget markup.
+- Important nuance: CSS overrides alone were not reliable for service-page process CTA entrance animation because several service pages still carried `data-aos` directly on `.service-workflow__cta` and other `.editing-process-cta` rows in the HTML. Those AOS attributes have now been removed from the service-page markup so those CTA buttons appear immediately, while normal hover behavior remains enabled.
 
 ## Open Caution Items
 
