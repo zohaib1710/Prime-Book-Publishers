@@ -1,0 +1,1033 @@
+# Hancock Publishers Project Context
+
+This repository is a static/exported HTML website located at:
+
+`c:\Users\Saba\Downloads\Hancock Publishers\Hancock Publishers\hancockpublishers.com`
+
+This file exists so a new Codex chat can continue work without re-scanning the whole repo first.
+
+## Read This First
+
+- This is not a clean app codebase. It is a static exported site with messy structure, duplicated CSS, legacy markup, and some malformed HTML.
+- Some files contain content, styles, or scripts after an early closing `</html>`. Do not assume valid document order.
+- Homepage-specific styling is mostly inside `index.html`, especially a large inline style block after an early `</html>`.
+- Shared/global/sitewide styling is mostly in `assets/css/main.css`, especially the final override area near the bottom.
+- Search before patching. There are often duplicate selectors and older rules that still exist.
+- Keep changes tightly scoped. Prefer late overrides over rewriting large legacy blocks.
+- Use `apply_patch` for edits.
+
+## Project Shape
+
+Main pages:
+
+- `index.html` - homepage
+- `services.html`
+- `about-us.html`
+- `about-standalone.html`
+- `portfolio.html`
+- `reviews.html`
+- `contact-us.html`
+- `privacy-policy.html`
+- `terms-and-conditions.html`
+
+Newer replacement / custom pages:
+
+- `about-us-new.html`
+- `portfolio-new.html`
+- `reviews-new.html`
+
+Primary service pages:
+
+- `audiobook-service.html`
+- `author-website-design.html`
+- `book-cover-design.html`
+- `book-editing-services.html`
+- `book-illustration-services.html`
+- `book-marketing-services.html`
+- `book-publishing-services.html`
+- `ghostwriting-services.html`
+
+Key shared assets and folders:
+
+- `assets/css/main.css` - global stylesheet and most shared overrides
+- `assets/css/editorial-pages.css` - styles for `about-us-new.html`, `portfolio-new.html`, `reviews-new.html`
+- `assets/js/main.js`, `assets/js/custom.js` - existing frontend behavior
+- `assets/img/service-heroes/` - service page hero backgrounds
+- `assets/img/service-workflow/` - workflow section assets
+- `assets/img/editing/` - package card assets and connectors
+- `assets/img/platforms/` - homepage platforms-section assets
+- `assets/img/brands/` - platform logos
+- `assets/img/opt/` and `assets/img/portfolio-home/` - homepage portfolio visuals
+- `assets/img/page-heroes/` - custom hero images used by the newer About / Portfolio / Reviews pages
+
+## Current Truth Snapshot
+
+This section is more important than older notes below if they conflict.
+
+- The repo is now a mix of:
+  - original exported legacy pages
+  - heavily customized homepage
+  - standardized service pages
+  - three newer editorial-style replacement pages:
+    - `about-us-new.html`
+    - `portfolio-new.html`
+    - `reviews-new.html`
+- The homepage is still the most special-case file in the repo.
+- Shared/sitewide styling is mostly controlled by late overrides near the bottom of `assets/css/main.css`.
+- The three newer editorial pages have their own header/hero/button overrides in `assets/css/editorial-pages.css`.
+- If a visual change “does nothing,” there is usually a later override or page-specific stylesheet beating it.
+
+## Current Header System
+
+The site now uses a shared two-state header system:
+
+- top state:
+  - blurred glass / translucent look
+  - white nav text
+  - full logo
+- scrolled state:
+  - metallic gold pill background
+  - dark navy nav text
+  - compact center logo using `assets/img/prime-logo.png`
+
+Important implementation split:
+
+- homepage:
+  - exact approved version is in `index.html`
+  - body class / scroll class logic is homepage-specific
+- most sitewide pages:
+  - shared version is in `assets/css/main.css`
+  - scroll toggling is in `assets/js/main.js`
+- editorial replacement pages:
+  - `about-us-new.html`
+  - `portfolio-new.html`
+  - `reviews-new.html`
+  - these use shared nav markup but are further tuned in `assets/css/editorial-pages.css`
+
+Current header logo assets:
+
+- top / transparent state logo:
+  - `assets/img/prime-logo-full.png`
+- sticky / scrolled compact logo:
+  - `assets/img/prime-logo.png`
+
+Do not use `assets/img/logo.png` for sticky header behavior anymore.
+
+## Current Navigation Order
+
+Current intended nav order across the site:
+
+- `About`
+- `Services`
+- `Logo` centered and linked to homepage
+- `Portfolio`
+- `Reviews`
+
+Current nav interaction rule:
+
+- header nav links should not change text color on hover, focus, or active/current state
+- the only interaction cue for top-level header links should be the underline
+- transparent/top-state headers keep white text during interaction
+- scrolled gold-pill headers keep dark navy text during interaction
+
+Current mobile header note:
+
+- the phone-only shared header uses a left-side placeholder `::before` block and the right-side hamburger button to keep the center logo visually balanced
+- the hamburger control should stay vertically centered in the pill header, with the three bars centered inside the circular button
+- the hamburger button is positioned absolutely in the mobile header so it does not jump during scroll-state changes
+
+## Current Button System
+
+Current intended button system:
+
+- premium metallic gold gradient
+- dark navy text
+- subtle inset highlight and restrained shadow
+- not flat yellow
+- not glossy / plastic
+
+Primary reusable selectors are enforced near the bottom of `assets/css/main.css`.
+
+Important nuance:
+
+- many old button rules still exist higher up in `main.css`
+- the final cleanup block at the end is meant to win
+- hero-specific older gold/navy button overrides were also brought closer to the same premium system
+
+Editorial page CTA buttons:
+
+- `about-us-new.html`
+- `portfolio-new.html`
+- `reviews-new.html`
+
+use `.editorial-btn` rules in `assets/css/editorial-pages.css`
+
+## Current Contact Details
+
+Canonical sitewide contact details are now:
+
+- email:
+  - `info@primebookpublishinglabs.com`
+- phone:
+  - link target: `tel:+14076800272`
+  - display format: `(407) 680-0272` or `+1 (407) 680-0272` depending on context
+- WhatsApp:
+  - link target: `https://wa.me/19544107418`
+- mailing address:
+  - `2630 W Boward Blvd`
+  - `Fort Lauderdale, FL 3312`
+  - footer/address blocks should link to:
+    - `https://maps.google.com/?q=2630%20W%20Boward%20Blvd,%20Fort%20Lauderdale,%20FL%203312`
+
+Footer review logo links are now:
+
+- Trustpilot:
+  - `https://www.trustpilot.com/review/primebookpublishinglabs.com`
+- Reviews.io:
+  - `https://www.reviews.io/company-reviews/store/primebookpublishinglabs.com`
+- Google Reviews:
+  - `https://www.google.com/maps/place//data=!4m3!3m2!1s0x88d901af7b400bc9:0x5c6eb73a3668fb50!12e1?source=g.page.m.ia._&laa=nmx-review-solicitation-ia2`
+
+Important recent correction:
+
+- the left contact rail phone and WhatsApp links in `assets/js/main.js` are part of the sitewide contact surface and must stay aligned with the canonical contact values above
+
+## Current Gold Text System
+
+There are now two related gold systems:
+
+1. Metallic gold buttons
+2. Metallic/clipped gold text for text that was already intended to be gold
+
+Important:
+
+- Do not automatically convert all headings to gold.
+- Only elements already intended as gold accents should use the metallic gold text treatment.
+
+Homepage-only gold text tuning also exists inside `index.html`.
+
+## Current Left Contact Rail
+
+The left rail is sitewide and is generated/normalized by `assets/js/main.js`.
+
+Current intended behavior:
+
+- dark navy by default
+- expands on hover
+- gold hover state
+- items:
+  - Live Chat
+  - Phone
+  - Whatsapp
+  - Instagram
+  - Facebook
+- right floating sidebar/widgets were removed sitewide
+
+Key styling lives in `assets/css/main.css`.
+
+Important recent correction:
+
+- rail tabs should be dark blue normally
+- they should only turn gold in the hover/expanded state
+
+## Current Homepage State
+
+Homepage file:
+
+- `index.html`
+
+Homepage body class:
+
+```html
+<body class="homepage-index gd-form homepage-nav-at-top">
+```
+
+Homepage-specific truths:
+
+- header:
+  - glass at top
+  - metallic gold on scroll
+  - compact `prime-logo.png` on scroll
+- hero:
+  - current approved version is the source of truth for service-page hero rollout
+  - left hero content has been moved upward for better centering against the form
+  - hero form is currently 1-column on homepage
+  - hero form is intentionally larger and visually stronger than earlier versions
+- homepage FAQ:
+  - homepage-only FAQ styling currently lives in `index.html`
+  - a redesign request based on a screenshot was being worked on but is not yet reliably finalized in the repo
+  - if resuming FAQ work, inspect both the FAQ CSS block around the homepage-specific overrides and the FAQ markup in `index.html`
+
+## Current Service Page Hero System
+
+Service pages now intentionally follow the homepage hero more closely.
+
+Shared selector:
+
+- `.service-hero-bg`
+
+Current intended service-page hero behavior:
+
+- each page keeps its own copy and its own background image
+- hero background images should show without a gradient/tint overlay
+- left hero content block is shifted upward to visually align with the form
+- right hero form remains in place unless a page-specific visual issue requires adjustment
+- hero form is now single-column on service pages, matching the current homepage form stack
+- service hero CTA buttons should follow the premium metallic gold system
+
+This behavior is controlled in `assets/css/main.css`.
+
+Important recent correction:
+
+- the final `.service-hero-bg::before` override near the bottom of `assets/css/main.css` disables the hero gradient overlay on service pages only
+
+## Current Service-Page End CTA / Contact Section
+
+The homepage’s final CTA/contact section near the footer was copied to all service pages.
+
+That section is now the intended end-of-page block on service pages as well.
+
+Related styling:
+
+- `assets/css/main.css`
+- `#after_cta.contact-form-section`
+
+## Current Editorial Replacement Pages
+
+These three pages are separate custom replacements, not just slight edits to legacy pages:
+
+- `about-us-new.html`
+- `portfolio-new.html`
+- `reviews-new.html`
+
+Their styling source of truth is:
+
+- `assets/css/editorial-pages.css`
+
+They use:
+
+- custom hero images
+- custom page sections
+- shared nav markup
+- custom CTA/button classes (`.editorial-btn`)
+
+If header or CTA behavior looks wrong only on those three pages, inspect `assets/css/editorial-pages.css` before touching global header/button rules.
+
+Large extra content:
+
+- `blogs/` contains a huge exported blog/WordPress-style subtree.
+- Avoid touching `blogs/` unless the task is specifically blog-related.
+
+## Design System
+
+Current working palette:
+
+- Dark navy: `#061C45`
+- Rich navy: `#0B2D63`
+- Gold: `#D4A55A`
+- Darker gold hover: `#BE8C3D`
+- Cream/off-white: `#F8F4EE`
+- White: `#FFFFFF`
+- Charcoal text: `#1F2937`
+- Soft border: `#E7E2DA`
+
+Brand assets:
+
+- `assets/img/prime-logo-full.png` - fuller logo
+- `assets/img/prime-logo.png` - smaller `p` mark
+
+Typography/style direction:
+
+- Dark navy + gold is the dominant visual language.
+- Buttons, cards, dividers, side rails, and flow/work sections should feel premium/editorial rather than generic SaaS.
+- Homepage and service pages use a shared visual family, but homepage has a lot of page-specific inline styling in `index.html`.
+
+## Known Structural Pitfalls
+
+- `index.html` contains major homepage-specific CSS inline. If a homepage change does not respond to `main.css`, check `index.html`.
+- Some service pages also have odd inline structures around hero sections and section wrappers.
+- Duplicate button rules exist in `main.css`; later rules usually win.
+- Some classes are reused inconsistently across pages.
+- Some sections are active on one service page and commented out on another.
+- There are old styles and newer override blocks for the same elements. Always search for the selector before editing.
+
+## Homepage Architecture
+
+Homepage body class:
+
+```html
+<body class="homepage-index gd-form homepage-nav-at-top">
+```
+
+Homepage custom nav:
+
+```html
+<nav class="homepage-main-nav" aria-label="Main navigation">
+```
+
+Important homepage areas:
+
+1. Fixed/scrolled nav
+2. Hero section
+3. Partner/value section
+4. Custom services stack section
+5. Dark/gold editorial sections
+6. Portfolio section
+7. Platforms/brands section
+8. Reviews section
+
+### Homepage nav
+
+- There should only be one homepage nav.
+- Top state: transparent, full logo, white nav text.
+- Scrolled state: navy background, smaller `p` mark, white text with gold hover/active feel.
+- Scroll behavior is controlled in `index.html`.
+- Services submenu on homepage has its own styling in `index.html`, not just `main.css`.
+
+### Homepage hero
+
+Hero markup:
+
+```html
+<header class="section masthead bg-gradient" id="hero">
+```
+
+Important notes:
+
+- This is the hero section, not the nav header.
+- Background image is `assets/img/home-final.png`.
+- Hero overlay styling is inside `index.html`.
+- The overlay was changed from a light/white tint to a black overlay directly in `index.html`.
+- Homepage hero contains the prominent CTA/buttons and the hero form.
+
+### Homepage hero form
+
+- Uses `.hero-form-card`.
+- Homepage and service-page hero forms are visually related.
+- The form/select visual tuning lives partly in `main.css` and partly in `index.html`.
+
+### Homepage custom services stack
+
+This is the section visually like:
+
+- numbered rows
+- dark navy cards by default
+- gold hover/active state
+
+It corresponds to the “Discover Our Professional Services” / “We Offer Complete Book Publishing Services Under One Roof” style section.
+
+Important:
+
+- If this section looks wrong on the homepage, inspect both `index.html` and the late overrides in `assets/css/main.css`.
+- There had been a white override problem before; the intended state is dark blue default and gold on hover.
+
+### Homepage platforms / brands section
+
+Section is the dark navy editorial section with platform cards like:
+
+- Amazon KDP
+- Barnes & Noble
+- Walmart
+- Apple Books
+- Google Play Books
+- Rakuten Kobo
+- Spotify
+
+Important:
+
+- The card boxes should be dark navy, not white.
+- Homepage-specific styles for this live in `index.html`.
+- Decorative assets include:
+  - `assets/img/platforms/platform-divider.png`
+  - `assets/img/platforms/platform-card-frame.png`
+
+### Homepage reviews + portfolio
+
+Recent homepage custom sections include:
+
+- `homepage-book-portfolio-section`
+- `homepage-reviews-slider-section`
+
+These are custom-styled and should be treated as homepage-only sections unless a user asks for shared behavior.
+
+## Sitewide Button System
+
+Current intended button system:
+
+Default sitewide buttons:
+
+- transparent background
+- gold text
+- gold border
+
+Hover:
+
+- gold background
+- dark text
+- gold border
+
+Hero section buttons:
+
+- both hero buttons should be solid gold by default
+- hover flips to navy/dark treatment
+
+Important implementation note:
+
+- Generic button rules live in `assets/css/main.css`.
+- Homepage hero button behavior responded correctly.
+- Service-page hero button behavior has been stubborn due to legacy overlap and may still need verification page by page if a future task touches them.
+
+Common selectors involved:
+
+- `.book-btn`
+- `.main-btn`
+- `.btn-black-bg`
+- `.cta-btn-small.main-btn.book-btn`
+- `.service-hero-bg`
+- `header.section.masthead`
+
+## Sitewide Sidebar / Floating Rail
+
+The left social rail and right floating quote/contact widgets were restyled sitewide to match the navy/gold look from the provided references.
+
+If they regress:
+
+- inspect `assets/css/main.css`
+- check for page-specific inline overrides only if needed
+
+## Service Page Architecture
+
+Service pages generally share:
+
+- hero section
+- intro/value sections
+- process/flowchart section on some pages
+- package/pricing section on selected pages
+- CTA sections
+
+Shared hero background classes:
+
+- `service-hero-audiobook`
+- `service-hero-author-website`
+- `service-hero-book-cover`
+- `service-hero-book-editing`
+- `service-hero-book-marketing`
+- `service-hero-book-publishing`
+- `service-hero-ghostwriting`
+- `service-hero-illustration`
+
+Hero background assets:
+
+- `assets/img/service-heroes/audiobook.png`
+- `assets/img/service-heroes/author-website.png`
+- `assets/img/service-heroes/book-cover.png`
+- `assets/img/service-heroes/book-editing.png`
+- `assets/img/service-heroes/book-marketing.png`
+- `assets/img/service-heroes/book-publishing.png`
+- `assets/img/service-heroes/ghostwriting.png`
+- `assets/img/service-heroes/illustration.png`
+
+## Workflow / Flowchart Sections
+
+The old flowchart/process sections on service pages were converted to a shared screenshot-inspired workflow style.
+
+Shared component lives in:
+
+- `assets/css/main.css`
+
+Core selector:
+
+- `.service-workflow-section`
+
+Supporting asset:
+
+- `assets/img/service-workflow/workflow-center-ornament.svg`
+
+Pages with live workflow section styling updated:
+
+- `audiobook-service.html`
+- `author-website-design.html`
+- `ghostwriting-services.html`
+- `book-editing-services.html`
+- `book-publishing-services.html`
+- `book-cover-design.html`
+
+Visual direction:
+
+- dark navy background
+- gold eyebrow text
+- centered title/subtitle
+- pinned-note style cards
+- central decorative ornament
+- CTA row below
+
+If future work touches these sections:
+
+- preserve the shared component rather than creating one-off variants unless explicitly requested
+
+## Packages / Pricing Section System
+
+A screenshot-inspired package-card system was built for selected service pages.
+
+Shared selector:
+
+- `.pricing-section--editing-process`
+
+Related selectors:
+
+- `.editing-process-grid`
+- `.pack-main-wrapper`
+- `.pack-1` through `.pack-5`
+
+Assets:
+
+- `assets/img/editing/book-editing-packages-bg-v2.png`
+- `assets/img/editing/process-icon-consultation.svg`
+- `assets/img/editing/process-icon-review.svg`
+- `assets/img/editing/process-icon-edit.svg`
+- `assets/img/editing/process-icon-delivery.svg`
+- `assets/img/editing/process-string-1.svg`
+- `assets/img/editing/process-string-2.svg`
+- `assets/img/editing/process-string-3.svg`
+
+Service pages that should keep packages:
+
+- `book-publishing-services.html` - 3 plans
+- `ghostwriting-services.html` - 3 plans
+- `book-marketing-services.html` - 4 plans
+- `book-editing-services.html` - 4 plans
+- `book-illustration-services.html` - 4 plans
+
+Service pages where packages were intentionally removed / not kept:
+
+- `audiobook-service.html`
+- `author-website-design.html`
+- `book-cover-design.html`
+
+Implementation notes:
+
+- Card sizing needs to match plan count.
+- 3-card and 4-card layouts may need different spacing behavior.
+- Connector strings were custom assets and placement was adjusted multiple times.
+- Some issues were fixed in publishing/marketing/illustration package sections already, but future visual QA is still a good idea if these sections are touched again.
+- Latest sizing update: service-page `Our Packages` sections now use a wider desktop container and larger plan cards/text through a scoped override in `assets/css/main.css`; connector strings were stretched to match the larger card spacing. The live package pages are `book-editing-services.html`, `book-publishing-services.html`, `ghostwriting-services.html`, `book-marketing-services.html`, and `book-illustration-services.html`.
+- Latest text-color update: gold package cards (`pack-1`, `pack-3`, `pack-5`) use dark navy for the top label and plan title, while the `INSTALLMENT AVAILABLE`/top-plan label is larger across all package cards.
+
+## Audiobook Service Page Special Notes
+
+`audiobook-service.html` received several page-specific adjustments.
+
+Section counting note:
+
+- When user says “count sections after hero,” the correct starting point is:
+  - Section 1 = `Reach More Readers Through Audio`
+
+Important recent background mapping work:
+
+- `Reach More Readers Through Audio` uses `assets/img/home-section-white-bg.png`
+- `Let Us Bring Your Story To Life Through Audio` should use `assets/img/home-section-blue-plain.png`
+
+Important recent color note:
+
+- The `Let Us Bring Your Story To Life Through Audio` section also needed white text because wrapper-level color alone was being overridden.
+- If that section regresses, inspect direct inline styles on its heading/paragraphs.
+
+## Homepage Background Assets Frequently Used
+
+- `assets/img/home-section-white-bg.png`
+- `assets/img/home-section-blue-plain.png`
+- `assets/img/home-section-bg-books-gold.png`
+- `assets/img/home-section-bg-books-gold-small.png`
+- `assets/img/home-final.png`
+
+Note:
+
+- There is both `home-section-blue-plain.png` and older references to `home-section-blue-plain-bg.png`. Use the actual file that exists in the repo.
+
+## CSS / HTML Search Priorities
+
+When troubleshooting, check in this order:
+
+1. target page HTML file
+2. inline `<style>` in that page
+3. late overrides in `assets/css/main.css`
+4. older legacy rules in `assets/css/main.css`
+
+Useful selectors/search terms:
+
+- homepage:
+  - `homepage-index`
+  - `homepage-main-nav`
+  - `homepage-services-dropdown`
+  - `homepage-platforms__card`
+  - `#hero.masthead`
+- buttons:
+  - `book-btn`
+  - `btn-black-bg`
+  - `main-btn`
+- service pages:
+  - `service-hero-bg`
+  - `service-workflow-section`
+  - `pricing-section--editing-process`
+
+## Current User Preferences
+
+- Read `context.md` before making changes.
+- Keep `context.md` updated after every completed change so future chats inherit the latest state.
+- Do not scan the whole repo unnecessarily when a focused context file can avoid it.
+- Homepage-specific work is usually in `index.html`.
+- Global/sitewide overrides are usually near the bottom of `assets/css/main.css`.
+- Search before patching.
+- Keep changes scoped.
+- If asked, list modified files at the end.
+- Follow the provided screenshot/reference closely rather than making generic design decisions.
+- Do not add new sections where the user did not ask for them.
+
+## Recently Completed / Important Changes
+
+These are the major changes already made in this project:
+
+- Homepage custom nav and scrolled-state behavior refined.
+- Homepage hero overlay changed to black in `index.html`.
+- Homepage service-stack cards corrected to dark navy default with gold hover behavior.
+- Homepage platforms/brands cards corrected to dark navy card boxes.
+- Homepage submenu text color fixed via homepage-specific override in `index.html`.
+- Sitewide submenu text color fixed in `assets/css/main.css`.
+- Sitewide sidebar/floating rail restyled to navy/gold.
+- Sitewide button system updated to transparent gold-outline by default.
+- Hero buttons intended to be solid gold.
+- Service-page workflow sections redesigned into shared pinned-note style.
+- Package sections redesigned for selected service pages only.
+- Audiobook section backgrounds and text colors adjusted.
+- Homepage reviews slider now enlarges the actual center card via late inline CSS and a center-detection script in `index.html`.
+- Service-page review sliders now enlarge the actual center card via `assets/js/main.js` adding `service-reviews-enhanced` and late rules in `assets/css/main.css`.
+- Service-page hero background images now render without the gradient/tint overlay via a final `.service-hero-bg::before` override in `assets/css/main.css`.
+- CTA buttons are now section-aware sitewide through `assets/js/main.js`: white, cream/`--theme-cream`, and `home-section-white-bg.png` sections use dark navy buttons, all other sections use gold buttons, and hover keeps the same color while only animating slightly.
+- Important correction: the homepage white-section CTA rule needed explicit direct selectors such as `.complete-Solution-section a.cta-btn-small.main-btn.book-btn` and `background-image: none !important`; the broader `:is(...)` rule did not reliably beat the old gradient buttons.
+- Second correction: some homepage button gradients still won after CSS-only changes, so `index.html` now also has a late homepage-only script that applies inline `!important` button colors based on the closest section background.
+- Latest correction: the proven section-aware button color logic was promoted to `assets/js/main.js` so all pages that load the shared script get the same inline `!important` button color treatment.
+- Latest nuance: cream-like computed backgrounds, including `background-color: var(--theme-cream) !important`, are treated like white sections and should receive dark navy buttons.
+- Dark/navy sections must never receive dark navy buttons; `assets/js/main.js` now treats dark computed backgrounds and non-white background images as gold-button sections before checking light fallbacks.
+- Stronger fix: the section-aware button detector in `assets/js/main.js` now walks all ancestors, checks inline background declarations and known light/dark classes before computed styles, and reapplies after delayed page/slider initialization.
+- Important bug fix: transparent ancestors such as rows/columns compute as `rgba(0, 0, 0, 0)` and must be skipped before dark-background checks; otherwise light/cream sections incorrectly get gold buttons.
+- Service-page `Our Packages` sections now have larger desktop plan cards, larger plan text/list text, wider desktop layout coverage, and stretched connector strings via the shared `.pricing-section--editing-process` rules in `assets/css/main.css`.
+- Gold cards inside service-page `Our Packages` sections now force the top plan label and plan title to dark navy; the top label font size is larger for all cards.
+- Service-page FAQ headings (`Frequently Asked Questions`) now use the shared metallic gold gradient text treatment through the `.faq-section.bg-light` rules in `assets/css/main.css`.
+- `.brand-font` uses the shared metallic gold text treatment but must remain `display: inline`; do not set it to `inline-block`, because longer highlighted phrases jump to a new line instead of wrapping naturally with the heading text.
+- Section-aware buttons: light service showcase sections using `.complete-Solution-section.bg-grdient` must receive dark navy buttons. The shared detector in `assets/js/main.js` has a specific `isLightShowcaseSection()` exception so the cream gradient is not mistaken for a dark/background-image section.
+- Phone header: `assets/js/main.js` now enhances every `.homepage-main-nav` with a generated hamburger button and cloned mobile menu, while `assets/css/main.css` has a final `max-width: 767px` override that hides desktop nav links, keeps only the full logo visible on phone, and prevents the scrolled-state compact mark from replacing it. Desktop/tablet header behavior should remain unchanged.
+- Sitewide loading screens that use `#loading-screen` now display `assets/img/prime-logo.png` instead of the old favicon image. Head favicon links were intentionally left unchanged.
+- Navigation Services behavior: the Services parent item is now a dropdown trigger only. `assets/js/main.js` prevents navigation on the parent Services link, keeps desktop hover behavior, and turns the mobile Services item into a collapsible button so the submenu is not always expanded.
+
+## Open Caution Items
+
+- Service-page hero buttons may still need page-by-page verification if a future task is about hero CTAs specifically.
+- Because this is a static export, some “no change” issues are caused by page-level inline CSS beating shared rules.
+- Some previous visual fixes were done quickly based on screenshots and may benefit from QA if the same section is edited again.
+
+## Recommended Workflow For A New Codex Chat
+
+1. Read this `context.md`.
+2. Open only the file(s) directly related to the user’s request.
+3. For homepage changes, inspect `index.html` first.
+4. For sitewide changes, inspect the late overrides in `assets/css/main.css`.
+5. Search for the specific selector before patching because duplicates are common.
+6. Keep fixes narrow and avoid broad refactors unless explicitly requested.
+
+## Files Most Likely To Be Modified Again
+
+- `index.html`
+- `assets/css/main.css`
+- `audiobook-service.html`
+- `author-website-design.html`
+- `book-cover-design.html`
+- `book-editing-services.html`
+- `book-illustration-services.html`
+- `book-marketing-services.html`
+- `book-publishing-services.html`
+- `ghostwriting-services.html`
+
+## Handoff Reminder
+
+If starting a new chat, tell Codex:
+
+- this is a static exported site
+- homepage styles are in `index.html`
+- sitewide styles are in `assets/css/main.css`
+- read `context.md` before making changes
+- keep changes scoped
+- search before patching
+
+## Superseding 2026 Update
+
+If anything earlier in this file conflicts with this section, trust this section.
+
+### Most Current Architecture
+
+- `index.html` is still the homepage source of truth and contains a large amount of homepage-only CSS and some homepage-only JS behavior.
+- `assets/css/main.css` contains the late sitewide override system and should be checked near the bottom first for shared styling changes.
+- `assets/css/editorial-pages.css` is the source of truth for:
+  - `about-us-new.html`
+  - `portfolio-new.html`
+  - `reviews-new.html`
+
+### Header System
+
+Current approved header behavior:
+
+- top state:
+  - blurred glass / translucent pill
+  - full logo: `assets/img/prime-logo-full.png`
+  - white nav text
+- scrolled state:
+  - metallic gold pill
+  - dark navy nav text
+  - compact sticky logo: `assets/img/prime-logo.png`
+
+Implementation split:
+
+- homepage exact version:
+  - `index.html`
+- sitewide shared version:
+  - `assets/css/main.css`
+  - `assets/js/main.js`
+- editorial replacement page adjustments:
+  - `assets/css/editorial-pages.css`
+
+Do not use `assets/img/logo.png` for sticky header behavior.
+
+### Navigation Order
+
+Current sitewide nav order:
+
+- `About`
+- `Services`
+- centered logo linking to `index.html`
+- `Portfolio`
+- `Reviews`
+
+### Homepage Current Truth
+
+- Homepage header is approved and should be treated as the reference version for shared header behavior.
+- Homepage hero:
+  - left copy / right form layout
+  - hero form is now single-column
+  - left hero block has been shifted upward to align visually with the form
+- Homepage button system:
+  - section-aware homepage CTA colors are enforced in a late inline style block near the bottom of `index.html`
+  - CTAs in plain white sections or sections using `assets/img/home-section-white-bg.png` should be dark navy
+  - CTAs in all other homepage sections, including image-background sections, should be gold
+  - CTA hover should not swap colors; hover should only slightly lift/grow the button
+- Shared homepage popup:
+  - `#mainpopupform` in `index.html` now uses the same intake fields as the homepage hero form
+  - popup field order is: name, phone, email, manuscript-ready, published-before, book-type, services
+  - popup controls were restyled to a cleaner white-on-gold treatment for readability
+  - dropdown arrows were explicitly restyled for visibility, and the close button now uses a gold circular control
+  - for non-home pages, `assets/js/main.js` is now the source of truth:
+    - if a page has no popup, it injects the shared `#mainpopupform`
+    - if a page still contains an older embedded `#mainpopupform`, it rewrites that modal to the updated homepage-style field set instead of leaving the legacy popup in place
+  - this was necessary because many legacy service/about pages already shipped their own old popup markup and scripts
+  - additionally, the legacy embedded popup HTML was directly updated in these pages so they no longer ship the old field set in source:
+    - `about-us.html`
+    - `audiobook-service.html`
+    - `author-website-design.html`
+    - `book-cover-design.html`
+    - `book-editing-services.html`
+    - `book-illustration-services.html`
+    - `book-marketing-services.html`
+    - `book-publishing-services.html`
+    - `ghostwriting-services.html`
+    - `portfolio.html`
+    - `reviews.html`
+    - `services.html`
+- Homepage gold accent text:
+  - metallic treatment only for text that was already intended to be gold
+- Homepage FAQ:
+  - there is active homepage-only FAQ styling in `index.html`
+  - the latest redesign request for the homepage FAQ was in progress and may still need a dedicated cleanup pass
+
+### Service Page Current Truth
+
+Service pages now intentionally mirror the homepage hero behavior more closely.
+
+Shared hero selector:
+
+- `.service-hero-bg`
+
+Current service hero behavior:
+
+- keep each page’s own copy and background
+- service hero background images should not have a gradient/tint overlay
+- hero form is single-column
+- left hero content is shifted upward for form alignment
+- form column remains mostly unchanged unless a page-specific balance issue appears
+
+Service-page hero/layout/button adjustments live primarily in:
+
+- `assets/css/main.css`
+
+Important service-page caveat:
+
+- service pages may still have `body class="homepage-index gd-form"`, so do not rely on `body:not(.homepage-index)` to target service pages
+
+### Editorial Replacement Pages Current Truth
+
+These are not minor variants of old pages; they are separate custom replacement pages:
+
+- `about-us-new.html`
+- `portfolio-new.html`
+- `reviews-new.html`
+
+Their custom CTA button class:
+
+- `.editorial-btn`
+
+Their header behavior is shared with the site, but they also have page-specific overrides in:
+
+- `assets/css/editorial-pages.css`
+
+If only these 3 pages look wrong, inspect `editorial-pages.css` first.
+
+### Portfolio Page Current Truth
+
+- `portfolio-new.html` is the live working portfolio page.
+- The featured portfolio shelf now contains the original curated cards plus the added root-level JPG assets from `assets/img/portfolio/`.
+- The portfolio filter set on `portfolio-new.html` now uses real genre groupings for the expanded shelf: `Memoir`, `Nonfiction`, `Fiction`, `Romance`, `Children's`, plus the existing `Campaigns` bucket.
+- The added root-level JPG assets from `assets/img/portfolio/` were classified into those real genres and given cover-specific titles/descriptions instead of placeholder copy.
+- The new cards reuse the existing `.editorial-portfolio-card` structure so visual styling remains controlled by `assets/css/editorial-pages.css`.
+
+### About Page Current Truth
+
+- `about-us-new.html` is the live working About page.
+- Two screenshot-inspired editorial sections were added immediately after the About hero:
+  - a `Who We Are` text-and-image section
+  - a `Discover More` image-and-text section
+- Two more continuity sections were then added after those:
+  - a dark-navy centered author-support CTA band
+  - an `Our Vision & Mission` two-card section
+- Directly under those two continuity sections, `about-us-new.html` now also includes:
+  - the shared service-page FAQ block structure, adapted with About-page questions
+  - the shared end-of-service-page contact/form section using `#after_cta`
+- The `Our Vision & Mission` cards on `about-us-new.html` now use crisp Font Awesome icons instead of raster-like placeholders, and their card backgrounds were warmed to a light gold tint to better match the site palette.
+- These sections intentionally use the site's existing editorial visual language rather than the source screenshot's plain cyan styling:
+  - shared editorial section backgrounds
+  - gold buttons on dark-blue sections only
+  - dark-navy buttons on non-blue About sections
+  - framed placeholder images pulled from local assets
+- The supporting styles for those two new sections live in `assets/css/editorial-pages.css` under the `.editorial-about-*` selectors.
+
+### Button System Current Truth
+
+Current intended button design:
+
+- premium metallic gold gradient
+- dark navy text
+- restrained, modern luxury look
+- subtle depth, not plastic
+
+Important:
+
+- old button rules still exist higher in `assets/css/main.css`
+- the final cleanup/override region near the bottom is supposed to win
+- hero-specific legacy button rules also exist and can override shared behavior if edited carelessly
+
+### Left Contact Rail Current Truth
+
+Current intended behavior:
+
+- dark blue tabs by default
+- expands on hover
+- gold hover state only
+- items:
+  - Live Chat
+  - Phone
+  - Whatsapp
+  - Instagram
+  - Facebook
+
+Key files:
+
+- structure/behavior:
+  - `assets/js/main.js`
+- styling:
+  - `assets/css/main.css`
+
+### Service Page Footer CTA Block
+
+The homepage-style final CTA/contact section near the footer was copied to service pages and is now the intended end-of-page CTA block there.
+
+Relevant selector:
+
+- `#after_cta.contact-form-section`
+
+### Package / Pricing Notes
+
+Current package truths:
+
+- `book-editing-services.html`
+  - Proofreading package removed
+  - section now designed for 3 services/plans
+- `ghostwriting-services.html`
+  - package CTA buttons were fixed for visibility
+
+### Slider / Review / Portfolio Notes
+
+- Homepage portfolio slider:
+  - arrows removed
+  - auto-scroll behavior intended
+- Homepage reviews slider:
+  - center review card grows dynamically
+  - implementation is in late inline CSS/JS in `index.html`
+- `book-marketing-services.html`
+  - portfolio section was replaced with the homepage portfolio section style
+- footer review logos:
+  - footer review badges now use image assets copied from the provided external references:
+    - `assets/img/review/reviews-io.png`
+    - `assets/img/review/trustpilot-logo.png`
+    - `assets/img/review/google-reviews.png`
+  - compatibility copies also exist at:
+    - `assets/img/review/reviewsio.png`
+    - `assets/img/review/trustpilot.png`
+    - `assets/img/review/google3.png`
+  - right-side review badges in the newer footer use shared responsive layout rules from `assets/css/main.css`
+  - desktop: compact right-aligned stacked column
+  - tablet: three-item row beneath the main footer columns
+  - mobile: centered single-column stack with constrained logo widths
+  - legacy footer rows on older pages were also normalized to the same Reviews.io / Trustpilot / Google trio
+- homepage scroll-to-top button:
+  - should match the service-page design
+  - avoid homepage-only inline overrides in `index.html`; shared styling should come from `assets/css/main.css`
+- Service-page review sliders:
+  - all eight primary service pages have the `homepage-reviews-slider` component
+  - center review card grows dynamically
+  - implementation uses `assets/js/main.js` to add `service-reviews-enhanced`
+  - styling lives in late rules near the bottom of `assets/css/main.css`
+- review sections:
+  - intended dark-blue/gold styling sitewide
+
+### Most Likely Files To Touch Next
+
+- `index.html`
+- `assets/css/main.css`
+- `assets/css/editorial-pages.css`
+- `assets/js/main.js`
+- service page HTML files when copy/section markup changes are requested
+
+### Reviews Page Current Truth
+
+- `reviews-new.html` is the live working reviews page.
+- The primary testimonial grid on `reviews-new.html` now includes the original editorial-style review cards plus the full imported review set from `https://flobookpublishers.com/reviews.html`.
+- Imported review copy was adapted only by changing the referenced business name to `Prime Book Publishers`; the page still uses the existing `.editorial-review-card` structure and `editorial-pages.css` styling.
+- Reviews-page testimonial cards should use a uniform desktop/tablet card height with internal scrolling for longer review text. This behavior is scoped in `assets/css/editorial-pages.css` under `.editorial-page--reviews .editorial-review-card`; on mobile the cards return to natural height with no internal scroll.
+- The internal review scrollbar on `reviews-new.html` is custom-styled in `assets/css/editorial-pages.css` to match the navy/gold site language instead of the browser default.
+
+### Current Known Caution
+
+- This repo still has many duplicate selectors and stale legacy rules.
+- Search before patching every time.
+- For homepage tasks:
+  - check `index.html` first
+- For sitewide tasks:
+  - check the bottom of `assets/css/main.css`
+- For new About / Portfolio / Reviews page issues:
+  - check `assets/css/editorial-pages.css`

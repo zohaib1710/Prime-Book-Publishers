@@ -1,0 +1,41 @@
+<svg width="520" height="300" viewBox="0 0 520 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="0" y="0" width="520" height="300" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g filter="url(#glow)" stroke="#D4A55A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M217 135C181 128 150 111 131 83"/>
+    <path d="M303 135C339 128 370 111 389 83"/>
+    <path d="M217 165C181 172 150 189 131 217"/>
+    <path d="M303 165C339 172 370 189 389 217"/>
+    <path d="M126 81L132 83L130 89"/>
+    <path d="M394 81L388 83L390 89"/>
+    <path d="M126 219L132 217L130 211"/>
+    <path d="M394 219L388 217L390 211"/>
+  </g>
+  <g>
+    <path d="M210 182C222 162 243 150 260 150C277 150 298 162 310 182L260 171L210 182Z" fill="#F2BC57"/>
+    <path d="M212 183C220 167 237 157 252 157H260V185L212 183Z" fill="#FFF3E1"/>
+    <path d="M308 183C300 167 283 157 268 157H260V185L308 183Z" fill="#FFF3E1"/>
+    <path d="M210 182L199 204C218 197 240 194 260 194C280 194 302 197 321 204L310 182" fill="#F3A13B"/>
+    <path d="M199 204C221 196 241 193 260 193C279 193 299 196 321 204" stroke="#8A4A16" stroke-width="3" stroke-linecap="round"/>
+    <path d="M260 156V193" stroke="#8A4A16" stroke-width="3" stroke-linecap="round"/>
+    <path d="M220 164C232 163 245 166 260 175" stroke="#DCC1A4" stroke-width="2" stroke-linecap="round"/>
+    <path d="M220 171C232 170 245 173 260 181" stroke="#DCC1A4" stroke-width="2" stroke-linecap="round"/>
+    <path d="M300 164C288 163 275 166 260 175" stroke="#DCC1A4" stroke-width="2" stroke-linecap="round"/>
+    <path d="M300 171C288 170 275 173 260 181" stroke="#DCC1A4" stroke-width="2" stroke-linecap="round"/>
+    <path d="M204 183H316" stroke="#8A4A16" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <g fill="#D4A55A">
+    <path d="M260 113L264 125L276 129L264 133L260 145L256 133L244 129L256 125L260 113Z"/>
+    <path d="M225 123L227 130L234 132L227 134L225 141L223 134L216 132L223 130L225 123Z"/>
+    <path d="M295 123L297 130L304 132L297 134L295 141L293 134L286 132L293 130L295 123Z"/>
+    <path d="M240 101L241.5 106L246 107.5L241.5 109L240 114L238.5 109L234 107.5L238.5 106L240 101Z"/>
+    <path d="M280 101L281.5 106L286 107.5L281.5 109L280 114L278.5 109L274 107.5L278.5 106L280 101Z"/>
+  </g>
+</svg>
