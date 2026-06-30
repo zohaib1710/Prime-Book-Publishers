@@ -7759,6 +7759,43 @@ body.service-reviews-enhanced .homepage-reviews-slider .homepage-review-card--ce
     }
 }
 
+#site-zendesk-launcher {
+    position: fixed !important;
+    right: 22px !important;
+    bottom: 22px !important;
+    z-index: 2147483000 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 150px !important;
+    min-height: 52px !important;
+    padding: 0 22px !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    background: #145357 !important;
+    color: #ffffff !important;
+    box-shadow: 0 14px 34px rgba(2, 10, 24, 0.28) !important;
+    font: 700 16px/1.2 Arial, sans-serif !important;
+    cursor: pointer !important;
+}
+
+#site-zendesk-launcher:hover,
+#site-zendesk-launcher:focus-visible {
+    background: #0f464a !important;
+    outline: none !important;
+}
+
+@media (max-width: 767px) {
+    #site-zendesk-launcher {
+        right: 14px !important;
+        bottom: 14px !important;
+        min-width: 132px !important;
+        min-height: 48px !important;
+        padding: 0 18px !important;
+        font-size: 14px !important;
+    }
+}
+
 /* Sitewide FAQ treatment */
 .faq-section {
     position: relative !important;
