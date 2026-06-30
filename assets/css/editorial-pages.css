@@ -36,6 +36,12 @@ body.editorial-page {
   .editorial-page .homepage-main-nav.is-scrolled {
     top: 8px !important;
   }
+
+  .editorial-page--about .editorial-hero,
+  .editorial-page--reviews .editorial-hero,
+  .editorial-page--portfolio .editorial-hero {
+    background-image: url("../img/home-section-blue-plain.png") !important;
+  }
 }
 
 .editorial-page .homepage-navbar {
