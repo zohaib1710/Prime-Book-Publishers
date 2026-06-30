@@ -2,8 +2,6 @@
     var zendeskSnippetId = 'ze-snippet';
     var zendeskSnippetSrc = 'https://static.zdassets.com/ekr/snippet.js?key=3928d221-6f4b-41fe-a0c7-121aed1653d2';
     var existingZendeskScript = document.getElementById(zendeskSnippetId);
-    var fallbackLauncherId = 'site-zendesk-launcher';
-    var zendeskEventsBound = false;
 
     function withZendesk(callback, attempt) {
         if (window.zE) {
@@ -20,7 +18,6 @@
 
     function showZendeskLauncher() {
         withZendesk(function () {
-            bindZendeskEvents();
             try {
                 window.zE('webWidget', 'show');
             } catch (error) {
@@ -32,9 +29,7 @@
     }
 
     function openZendeskChat() {
-        setFallbackLauncherVisible(false);
         withZendesk(function () {
-            bindZendeskEvents();
             try {
                 window.zE('webWidget', 'show');
                 window.zE('webWidget', 'open');
@@ -47,52 +42,6 @@
         });
     }
 
-    function setFallbackLauncherVisible(isVisible) {
-        var launcher = document.getElementById(fallbackLauncherId);
-        if (launcher) {
-            launcher.style.display = isVisible ? 'inline-flex' : 'none';
-        }
-    }
-
-    function bindZendeskEvents() {
-        if (zendeskEventsBound || !window.zE) {
-            return;
-        }
-
-        zendeskEventsBound = true;
-        try {
-            window.zE('webWidget:on', 'open', function () {
-                setFallbackLauncherVisible(false);
-            });
-            window.zE('webWidget:on', 'close', function () {
-                setFallbackLauncherVisible(true);
-            });
-        } catch (error) {
-            try {
-                window.zE('messenger:on', 'open', function () {
-                    setFallbackLauncherVisible(false);
-                });
-                window.zE('messenger:on', 'close', function () {
-                    setFallbackLauncherVisible(true);
-                });
-            } catch (messengerError) {}
-        }
-    }
-
-    function ensureFallbackLauncher() {
-        if (document.getElementById(fallbackLauncherId)) {
-            return;
-        }
-
-        var launcher = document.createElement('button');
-        launcher.id = fallbackLauncherId;
-        launcher.type = 'button';
-        launcher.textContent = 'Chat with us';
-        launcher.setAttribute('aria-label', 'Open live chat');
-        launcher.addEventListener('click', openZendeskChat);
-        document.body.appendChild(launcher);
-    }
-
     window.setButtonURL = openZendeskChat;
     window.toggleChat = openZendeskChat;
 
@@ -101,11 +50,6 @@
             existingZendeskScript.parentNode.removeChild(existingZendeskScript);
         } else {
             showZendeskLauncher();
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', ensureFallbackLauncher);
-            } else {
-                ensureFallbackLauncher();
-            }
             return;
         }
     }
@@ -116,12 +60,6 @@
     zendeskScript.async = true;
     zendeskScript.onload = showZendeskLauncher;
     document.head.appendChild(zendeskScript);
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', ensureFallbackLauncher);
-    } else {
-        ensureFallbackLauncher();
-    }
 })();
 
 (function () {
