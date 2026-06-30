@@ -30,6 +30,14 @@ body.editorial-page {
   box-shadow: none !important;
 }
 
+@media (max-width: 1024px) {
+  .editorial-page .homepage-main-nav,
+  .editorial-page .homepage-main-nav:not(.is-scrolled),
+  .editorial-page .homepage-main-nav.is-scrolled {
+    top: 8px !important;
+  }
+}
+
 .editorial-page .homepage-navbar {
   min-height: 80px !important;
   height: 80px !important;

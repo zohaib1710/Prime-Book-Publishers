@@ -137,6 +137,32 @@
         padding: 135px 0 70px;
       }
     }
+
+    @media (max-width: 1024px) {
+      .legal-redesign .homepage-main-nav,
+      .legal-redesign .homepage-main-nav:not(.is-scrolled),
+      .legal-redesign .homepage-main-nav.is-scrolled {
+        top: 8px !important;
+      }
+
+      body.legal-redesign .legal-nav-shell {
+        position: fixed !important;
+        inset: 0 0 auto 0 !important;
+        width: 100% !important;
+        max-width: none !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        z-index: 1060 !important;
+        overflow: visible !important;
+      }
+
+      body.legal-redesign .legal-nav-shell > .row,
+      body.legal-redesign .legal-nav-shell > .row > .col-md-12 {
+        display: contents !important;
+      }
+    }
   </style>
 </head>
 <body class="legal-redesign gd-form">
@@ -144,7 +170,7 @@
     <img src="assets/img/prime-logo.png" alt="Prime Book Publishing Labs Logo" title="Prime Book Publishing Labs Logo" loading="eager" decoding="async">
   </div>
 
-  <div class="container">
+  <div class="container legal-nav-shell">
     <div class="row">
       <div class="col-md-12">
         <nav class="homepage-main-nav" aria-label="Main navigation">
