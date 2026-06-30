@@ -5813,6 +5813,8 @@ body.about-page .about-hero-button-row .livechat-btn button {
 
 html,
 body {
+    margin: 0 !important;
+    padding-top: 0 !important;
     background-color: var(--theme-cream) !important;
     color: var(--theme-charcoal) !important;
 }
