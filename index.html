@@ -4748,8 +4748,8 @@ document.addEventListener("DOMContentLoaded", function () {
             <h2 data-aos="zoom-out-down" data-aos-duration="1000">Let's Bring Your Story To Life</h2>
             <p data-aos="zoom-out-up" data-aos-duration="1000">Share your ideas with our team and discover how simple the publishing journey can be. Whether you're just getting started or ready to publish, we're here to answer your questions and help you move forward with confidence.</p>
             <div class="editing-process-cta service-workPrimew__cta" data-aos="zoom-out-up" data-aos-duration="1000">
-				<a class="editing-process-cta__button editing-process-cta__button--primary" data-bs-toggle="modal" href="#mainpopupform" role="button">Get a Free Consultation</a>
-				<a class="editing-process-cta__button editing-process-cta__button--secondary" href="contact-us.html">Live Chat</a>
+				<a class="editing-process-cta__button editing-process-cta__button--primary" data-bs-toggle="modal" href="#mainpopupform" role="button" style="background:#061C45 !important;background-color:#061C45 !important;background-image:none !important;border-color:#061C45 !important;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;">Get a Free Consultation</a>
+				<a class="editing-process-cta__button editing-process-cta__button--secondary" href="contact-us.html" style="background:#061C45 !important;background-color:#061C45 !important;background-image:none !important;border-color:#061C45 !important;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;">Live Chat</a>
 			</div>
         </div>
 		<div class="row contact-info-row">
@@ -6318,7 +6318,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		function applyHomepageButtonColors() {
 			document.querySelectorAll('header#hero ' + buttonSelector + ', section ' + buttonSelector).forEach(function (button) {
-				if (button.closest('.homepage-main-nav, .homepage-book-portfolio__controls, .homepage-book-portfolio__dots, .accordion, .modal')) {
+				if (button.closest('#after_cta, .homepage-main-nav, .homepage-book-portfolio__controls, .homepage-book-portfolio__dots, .accordion, .modal')) {
 					return;
 				}
 

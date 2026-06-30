@@ -799,7 +799,7 @@ p {
     .client-reviews-section .row>div,
     .row>div:last-child,
     footer .row>div {
-        margin-bottom: 0
+        margin-bottom: 10;
     }
 
     .masthead .header-form input {
