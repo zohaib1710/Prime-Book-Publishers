@@ -1,4 +1,66 @@
-AOS.init();
+(function () {
+    var servicePages = [
+        'audiobook-service.html',
+        'author-website-design.html',
+        'book-cover-design.html',
+        'book-editing-services.html',
+        'book-illustration-services.html',
+        'book-marketing-services.html',
+        'book-publishing-services.html',
+        'ghostwriting-services.html'
+    ];
+
+    function initServicePopup() {
+        var currentPage = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+        if (servicePages.indexOf(currentPage) === -1) {
+            return;
+        }
+
+        var modalElement = document.getElementById('mainpopupform');
+        if (!modalElement) {
+            return;
+        }
+
+        function bindPopup(attempt) {
+            if (!window.bootstrap || !window.bootstrap.Modal) {
+                if (attempt < 25) {
+                    window.setTimeout(function () {
+                        bindPopup(attempt + 1);
+                    }, 200);
+                }
+                return;
+            }
+
+            var popupInstance = window.bootstrap.Modal.getOrCreateInstance(modalElement, {
+                backdrop: true,
+                keyboard: true
+            });
+
+            document.querySelectorAll('[href="#mainpopupform"], [data-bs-target="#mainpopupform"]').forEach(function (trigger) {
+                trigger.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    popupInstance.show();
+                });
+            });
+
+            window.setTimeout(function () {
+                popupInstance.show();
+            }, 3000);
+        }
+
+        bindPopup(0);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initServicePopup);
+    } else {
+        initServicePopup();
+    }
+})();
+
+if (window.AOS && typeof AOS.init === 'function') {
+    AOS.init();
+}
 
 /* ------ Sticky Headers ------  */
 
@@ -941,59 +1003,90 @@ document.addEventListener('DOMContentLoaded', function () {
     if (currentPage === 'index.html') {
         return;
     }
+    var popupSessionKey = 'offerShown:' + currentPage;
 
     function buildSitewidePopupInnerMarkup() {
         return [
             '<div class="modal-dialog modal-dialog-centered modal-xl">',
             '  <div class="modal-content">',
             '    <div class="offer-popup-box">',
+            '      <div class="offer-left">',
+            '        <div class="offer-left__content">',
+            '          <div class="offer-left__eyebrow">',
+            '            <img src="assets/img/popup-homepage/element-4.png" alt="Prime popup icon">',
+            '            <span>Prime Book Publishing Labs</span>',
+            '          </div>',
+            '          <div class="offer-left__divider" aria-hidden="true"></div>',
+            '          <h2 class="offer-left__title">Publish Your<br><span>Book.</span><br>Build Your Legacy.</h2>',
+            '          <p class="offer-left__copy">Professional publishing support crafted for authors who want a smoother path from manuscript to market-ready book.</p>',
+            '          <div class="offer-left__note">Professional publishing.<br>Wider reach.<br>A stronger author presence.</div>',
+            '        </div>',
+            '        <div class="offer-left__art">',
+            '          <img src="assets/img/popup-homepage/element-5a.png" alt="Prime Book Publishing Labs popup artwork">',
+            '        </div>',
+            '        <div class="offer-left__features" aria-label="Popup benefits">',
+            '          <div class="offer-left__feature"><img src="assets/img/popup-homepage/element-1.png" alt=""><span>Book Publishing</span></div>',
+            '          <div class="offer-left__feature"><img src="assets/img/popup-homepage/element-2.png" alt=""><span>Global Reach</span></div>',
+            '          <div class="offer-left__feature"><img src="assets/img/popup-homepage/element-3.png" alt=""><span>Premium Results</span></div>',
+            '        </div>',
+            '      </div>',
             '      <div class="offer-right">',
             '        <button class="popup-close" id="offerClose" type="button" data-bs-dismiss="modal" aria-label="Close">&times;</button>',
             '        <div class="offer-head">',
-            '          <p class="offer-tagline">&#10024; LIMITED TIME &#8226; SPOOKY SAVINGS</p>',
-            '          <h2>ACTIVATE YOUR COUPON<br>TO AVAIL <span>40% DISCOUNT</span></h2>',
-            '          <p class="offer-sub">It\'s a limited time offer so hurry up! Don\'t wait!</p>',
+            '          <div class="offer-head__badge"><img src="assets/img/prime-logo.png" alt="Prime Book Publishing Labs"></div>',
+            '          <div class="offer-head__copy">',
+            '            <p class="offer-tagline">Start Your Publishing Journey</p>',
+            '            <h2>Become A Published Author</h2>',
+            '            <p class="offer-sub">Fill in the details below and our team will help you move your book project forward with clarity and confidence.</p>',
+            '          </div>',
             '        </div>',
             '        <form class="main-form" id="popupMainForm" action="https://hancockpublishers.com/backend/action/action" method="POST">',
             '          <input type="hidden" name="type" value="formlongsiteMain">',
-            '          <div class="pf-row">',
+            '          <div class="pf-row pf-row--two-col">',
             '            <div class="pf-col">',
+            '              <label class="pf-label" for="formname">Full Name</label>',
             '              <div class="form-group"><input type="text" name="name" class="form-control pf-input" id="formname" placeholder="Your Name" required value=""></div>',
             '              <p class="d-none error" data-field="name">Name field is required</p>',
             '            </div>',
             '            <div class="pf-col">',
+            '              <label class="pf-label" for="formcw">Phone Number</label>',
             '              <div class="form-group"><input type="tel" name="phone" class="form-control pf-input" id="formcw" inputmode="tel" placeholder="Phone Number" required value=""></div>',
             '              <p class="d-none error" data-field="phone">Phone field is required</p>',
             '            </div>',
             '          </div>',
-            '          <div class="pf-row">',
+            '          <div class="pf-row pf-row--two-col">',
             '            <div class="pf-col">',
+            '              <label class="pf-label" for="formemail">Email Address</label>',
             '              <div class="form-group"><input type="email" name="email" pattern="[^ @]*@[^ @]*" class="form-control pf-input" id="formemail" placeholder="Email" required value=""></div>',
             '              <p class="d-none error" data-field="email">Email field is required</p>',
             '            </div>',
             '            <div class="pf-col">',
-            '              <div class="form-group"><select class="custom-select-arrow w-100 pf-input pf-select form-control" name="manuscript_ready" required><option value="" disabled selected>Do you have a manuscript ready?</option><option value="yes">Yes</option><option value="no">No</option><option value="unsure">In Progress</option></select></div>',
+            '              <label class="pf-label" for="popup-manuscript-ready">Manuscript Status</label>',
+            '              <div class="form-group"><select class="custom-select-arrow w-100 pf-input pf-select form-control" name="manuscript_ready" id="popup-manuscript-ready" required><option value="" disabled selected>Do you have a manuscript ready?</option><option value="yes">Yes</option><option value="no">No</option><option value="unsure">In Progress</option></select></div>',
             '              <p class="d-none error" data-field="manuscript_ready">Manuscript readiness field is required</p>',
             '            </div>',
             '          </div>',
             '          <div class="pf-row">',
             '            <div class="pf-col">',
-            '              <div class="form-group"><select class="custom-select-arrow w-100 pf-input pf-select form-control" name="published_before" required><option value="" disabled selected>Have you published before?</option><option value="yes">Yes</option><option value="no">No</option><option value="unsure">In Progress</option></select></div>',
+            '              <label class="pf-label" for="popup-published-before">Published Before?</label>',
+            '              <div class="form-group"><select class="custom-select-arrow w-100 pf-input pf-select form-control" name="published_before" id="popup-published-before" required><option value="" disabled selected>Have you published before?</option><option value="yes">Yes</option><option value="no">No</option><option value="unsure">In Progress</option></select></div>',
             '              <p class="d-none error" data-field="published_before">Publishing history field is required</p>',
             '            </div>',
             '            <div class="pf-col">',
-            '              <div class="form-group"><select class="custom-select-arrow w-100 pf-input pf-select form-control" name="book_type" required><option value="" disabled selected>What type of book do you plan on publishing?</option><option value="fiction">Fiction</option><option value="non-fiction">Non-Fiction</option><option value="memoir">Academic</option><option value="other">Other</option></select></div>',
+            '              <label class="pf-label" for="popup-book-type">Book Type</label>',
+            '              <div class="form-group"><select class="custom-select-arrow w-100 pf-input pf-select form-control" name="book_type" id="popup-book-type" required><option value="" disabled selected>What type of book do you plan on publishing?</option><option value="fiction">Fiction</option><option value="non-fiction">Non-Fiction</option><option value="memoir">Academic</option><option value="other">Other</option></select></div>',
             '              <p class="d-none error" data-field="book_type">Book type field is required</p>',
             '            </div>',
             '          </div>',
             '          <div class="pf-row">',
             '            <div class="pf-col pf-full">',
-            '              <div class="form-group"><select class="custom-select-arrow w-100 pf-input pf-select form-control" name="services_category" required><option value="" disabled selected>Pick Services For Your Book</option><option value="ghostwriting">Self Publishing</option><option value="editing">Proofreading</option><option value="publishing">Cover Design</option><option value="marketing">Book Marketing</option><option value="audiobook">Audiobook</option><option value="editing-service">Editing</option><option value="formatting">Formatting</option><option value="illustrations">Illustrations</option><option value="printing">Book Printing</option></select></div>',
+            '              <label class="pf-label" for="popup-services-category">Services Needed</label>',
+            '              <div class="form-group"><select class="custom-select-arrow w-100 pf-input pf-select form-control" name="services_category" id="popup-services-category" required><option value="" disabled selected>Pick Services For Your Book</option><option value="ghostwriting">Self Publishing</option><option value="editing">Proofreading</option><option value="cover-design">Cover Design</option><option value="marketing">Book Marketing</option><option value="audiobook">Audiobook</option><option value="editing-service">Editing</option><option value="formatting">Formatting</option><option value="illustrations">Illustrations</option><option value="printing">Book Printing</option></select></div>',
             '              <p class="d-none error" data-field="services_category">Service field is required</p>',
             '            </div>',
             '          </div>',
             '          <div class="pf-row">',
-            '            <div class="pf-col pf-full"><div class="form-group pt-40"><button type="submit" name="submit_contact" class="btn-form btn-hover cta-btn-small w-100 pf-btn">Claim 40% Discount &rarr;</button></div></div>',
+            '            <div class="pf-col pf-full"><div class="form-group pt-40"><button type="submit" name="submit_contact" class="btn-form btn-hover cta-btn-small w-100 pf-btn">Start My Publishing Journey</button></div></div>',
             '          </div>',
             '        </form>',
             '      </div>',
@@ -1004,7 +1097,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     var modalElement = document.getElementById('mainpopupform');
-    var hadExistingPopup = !!modalElement;
 
     if (!modalElement) {
         modalElement = document.createElement('div');
@@ -1017,7 +1109,7 @@ document.addEventListener('DOMContentLoaded', function () {
     modalElement.setAttribute('aria-hidden', 'true');
     modalElement.innerHTML = buildSitewidePopupInnerMarkup();
 
-    if (hadExistingPopup || typeof bootstrap === 'undefined') {
+    if (typeof bootstrap === 'undefined') {
         return;
     }
 
@@ -1026,10 +1118,17 @@ document.addEventListener('DOMContentLoaded', function () {
         keyboard: true
     });
 
-    if (!sessionStorage.getItem('offerShown')) {
+    document.querySelectorAll('[href="#mainpopupform"], [data-bs-target="#mainpopupform"]').forEach(function (trigger) {
+        trigger.addEventListener('click', function (event) {
+            event.preventDefault();
+            popupInstance.show();
+        });
+    });
+
+    if (!sessionStorage.getItem(popupSessionKey)) {
         window.setTimeout(function () {
             popupInstance.show();
-            sessionStorage.setItem('offerShown', '1');
+            sessionStorage.setItem(popupSessionKey, '1');
         }, 3000);
     }
 });

@@ -1,8 +1,8 @@
-# Hancock Publishers Project Context
+# Prime Book Publishing Labs Project Context
 
 This repository is a static/exported HTML website located at:
 
-`c:\Users\Saba\Downloads\Hancock Publishers\Hancock Publishers\hancockpublishers.com`
+`c:\Users\Saba\Downloads\Prime Book Publishing Labs\Prime Book Publishing Labs\hancockpublishers.com`
 
 This file exists so a new Codex chat can continue work without re-scanning the whole repo first.
 
@@ -76,10 +76,16 @@ This section is more important than older notes below if they conflict.
 - Shared/sitewide styling is mostly controlled by late overrides near the bottom of `assets/css/main.css`.
 - The three newer editorial pages have their own header/hero/button overrides in `assets/css/editorial-pages.css`.
 - `about-us-new.html` now uses a custom about-only hero layout with the existing `assets/img/page-heroes/about-us-hero.png` background, a centered glass panel, screenshot-matched About Us copy using the Prime Book Publishing Labs name, and four glass stat cards below it.
-- `portfolio-new.html` and `reviews-new.html` hero copy now also use scoped text-shadow rules in `assets/css/editorial-pages.css` for the hero kicker, heading, and body copy.
+- The `Our Vision & Mission` cards on `about-us-new.html` now use a dark navy background with white headings, body text, and icons through the `.editorial-about-mission__*` rules in `assets/css/editorial-pages.css`.
+- `portfolio-new.html` hero copy uses scoped text-shadow rules in `assets/css/editorial-pages.css` for the hero kicker, heading, and body copy.
+- `reviews-new.html` now keeps its existing hero background image but uses a centered glass hero panel like the about page with the headline “What Authors Say About Prime Book Publishing Labs.”
 - If a visual change “does nothing,” there is usually a later override or page-specific stylesheet beating it.
 
 ## Current Header System
+
+Canonical visible business name across the site is now:
+
+- `Prime Book Publishing Labs`
 
 The site now uses a shared two-state header system:
 
@@ -719,11 +725,25 @@ These are the major changes already made in this project:
 - Section-aware buttons: light service showcase sections using `.complete-Solution-section.bg-grdient` must receive dark navy buttons. The shared detector in `assets/js/main.js` has a specific `isLightShowcaseSection()` exception so the cream gradient is not mistaken for a dark/background-image section.
 - Phone header: `assets/js/main.js` now enhances every `.homepage-main-nav` with a generated hamburger button and cloned mobile menu, while `assets/css/main.css` has a final `max-width: 767px` override that hides desktop nav links, keeps only the full logo visible on phone, and prevents the scrolled-state compact mark from replacing it. Desktop/tablet header behavior should remain unchanged.
 - Mobile header centering fix: the final phone-only `.homepage-main-nav.is-mobile-ready .homepage-navbar` rules in `assets/css/main.css` now reserve equal 42px spacer blocks on both left and right so the full logo stays truly centered even though the hamburger button is absolutely positioned.
+- Sticky header centering fix: in the final desktop/tablet nav override block in `assets/css/main.css`, the scrolled-state `.homepage-centered-nav__logo` cell is now forced to a centered 74px flex slot so the compact `prime-logo.png` mark stays visually centered in the gold sticky header.
 - Sitewide loading screens that use `#loading-screen` now display `assets/img/prime-logo.png` instead of the old favicon image. Head favicon links were intentionally left unchanged.
 - Navigation Services behavior: the Services parent item is now a dropdown trigger only. `assets/js/main.js` prevents navigation on the parent Services link, keeps desktop hover behavior, and turns the mobile Services item into a collapsible button so the submenu is not always expanded.
+- The shared header label for the about page now reads `About Us` across the site’s top navigation, so cloned mobile menus generated from that markup inherit the same wording automatically.
+- On `author-website-design.html`, the blue “Website Support And Maintenance That Never Stops” split section now vertically centers its text and image columns together; the image column no longer bottom-aligns the artwork.
+- The homepage popup form in `index.html` was redesigned into a homepage-only two-panel Prime modal: a branded navy visual panel on the left and a light form panel on the right, while preserving the existing popup field names, backend action, validation hooks, and `#mainpopupform` behavior. Supporting assets were added under `assets/img/popup-homepage/`.
+- The old shared popup skin in `assets/css/main.css` was re-scoped to `.sitewide-offer-popup` so it no longer bleeds into the custom homepage popup redesign in `index.html`.
+- The homepage popup now uses split scrolling on desktop: the outer modal shell stays fixed/composed, the right form panel handles overflow internally, and the left visual panel no longer scrolls out of position with the form.
+- The homepage popup proportions were further tuned toward the provided reference: narrower left visual panel, wider right form panel, smaller right-panel header, more contained left artwork, and popup-specific close/button styling that overrides broader homepage button rules.
+- The homepage popup’s left panel was further simplified toward the reference: the decorative background icon/halo was removed, the headline now uses explicit stacked line breaks, and the support copy was reduced to a cleaner poster-style composition.
+- The shared popup system for non-homepage pages now also uses the newer Prime two-panel modal: `assets/js/main.js` builds the updated markup and `assets/css/main.css` provides the matching sitewide `.sitewide-offer-popup` layout, including the mixed two-column/single-column field structure and compact mobile stack.
 - Homepage and service-page hero copy now uses a stronger black text shadow for readability over image backgrounds. The homepage version is controlled in the late hero override block inside `index.html`; service-page hero copy uses the shared `.service-hero-bg` rules in `assets/css/main.css`.
 - Mobile hero sizing for the homepage and service pages is now more compact: phone-only overrides reduce hero heading size, body copy size/spacing, CTA spacing, and counter number/label sizing in the homepage block inside `index.html` and the shared service hero mobile block in `assets/css/main.css`.
+- A sitewide heading-only normalization pass was applied to HTML `h1`-`h6` tags so words beginning with lowercase letters now use uppercase initials; body copy and other non-heading text were intentionally left alone.
+- The lower pitch/contact form on the homepage, `about-us-new.html`, and all primary service pages now reuses the same field set as the hero form, but via scoped `--secondary` classes: it keeps the logo/title and hero-form fields while using a separate Prime-styled light card and two-column desktop layout in `assets/css/main.css` so the real hero form remains unchanged.
+- The two CTA buttons directly above that lower form (`Get a Free Consultation` and `Live Chat` inside `#after_cta.contact-form-section`) are now intentionally forced to dark navy through a section-scoped override in `assets/css/main.css`; this should not affect other `.editing-process-cta__button` instances elsewhere.
 - Homepage `Services We Offer` cards in `index.html` were remapped so each visible card now points to its matching service page: publishing, editing, cover design, marketing, author websites, illustration, audiobook, and ghostwriting. The last card’s heading/description were also updated from global distribution copy to ghostwriting copy.
+- On `book-cover-design.html`, the “Book Covers Crafted The Right Way” body copy is scoped with `.book-cover-crafted-section p:not(.pt-3)` so those paragraphs stay regular weight while the CTA row/buttons are unaffected.
+- `terms-and-conditions.html` and `privacy-policy.html` keep the existing Prime legal-page layout, header, and footer, but their `.policy-shell` body content was replaced from the referenced Flo Book Publishers legal pages and adapted to Prime Book Publishing Labs/current contact details.
 - The legacy floating review widget rendered as `.bottom-reviews` / `#bottomReviews` is now disabled sitewide through `assets/css/main.css` so it no longer appears on the homepage, service pages, or legacy interior pages that still include the old widget markup.
 - Important nuance: CSS overrides alone were not reliable for service-page process CTA entrance animation because several service pages still carried `data-aos` directly on `.service-workflow__cta` and other `.editing-process-cta` rows in the HTML. Those AOS attributes have now been removed from the service-page markup so those CTA buttons appear immediately, while normal hover behavior remains enabled.
 
@@ -848,6 +868,14 @@ Current sitewide nav order:
     - `portfolio.html`
     - `reviews.html`
     - `services.html`
+  - a later cleanup pass removed the extra duplicated old popup demo blocks that had been pasted mid-file into the primary service pages as a second `<!DOCTYPE html>` section; those pages now fall back cleanly to the shared `assets/js/main.js` + `.sitewide-offer-popup` implementation instead of rendering the old coupon popup from inline source
+  - after that cleanup, several service pages still had an older inline `DOMContentLoaded` script that tried to hide/show `#mainpopupform` directly; those inline scripts were removed so they no longer throw on missing markup or interfere with the shared popup builder in `assets/js/main.js`
+  - `assets/js/main.js` was also hardened so the shared popup still initializes even if a page already contains a `#mainpopupform` container placeholder
+  - because the legacy service pages are structurally malformed in places, the most reliable final setup for the primary service pages is:
+    - one real `#mainpopupform.sitewide-offer-popup` modal is present in the HTML source of each service page
+    - a small page-level fallback initializer opens that modal after load and binds all `href="#mainpopupform"` / `data-bs-target="#mainpopupform"` triggers to `bootstrap.Modal.getOrCreateInstance(...)`
+    - the shared `assets/js/main.js` popup logic still exists, but the service pages no longer depend on late runtime injection alone
+  - this service-page popup setup was verified with a headless Edge screenshot on `audiobook-service.html`, confirming the new two-panel Prime popup renders onscreen instead of the old right-side glass form
 - Homepage gold accent text:
   - metallic treatment only for text that was already intended to be gold
 - Homepage FAQ:
@@ -877,6 +905,7 @@ Service-page hero/layout/button adjustments live primarily in:
 Important service-page caveat:
 
 - service pages may still have `body class="homepage-index gd-form"`, so do not rely on `body:not(.homepage-index)` to target service pages
+- book editing and book publishing service hero forms have the page-specific `service-hero-form-card--shadowed` modifier for a darker blurred background and stronger field shadows; keep this scoped unless the same treatment is explicitly requested elsewhere
 
 ### Editorial Replacement Pages Current Truth
 
@@ -1025,7 +1054,7 @@ Current package truths:
 
 - `reviews-new.html` is the live working reviews page.
 - The primary testimonial grid on `reviews-new.html` now includes the original editorial-style review cards plus the full imported review set from `https://flobookpublishers.com/reviews.html`.
-- Imported review copy was adapted only by changing the referenced business name to `Prime Book Publishers`; the page still uses the existing `.editorial-review-card` structure and `editorial-pages.css` styling.
+- Imported review copy was adapted only by changing the referenced business name to `Prime Book Publishing Labs`; the page still uses the existing `.editorial-review-card` structure and `editorial-pages.css` styling.
 - Reviews-page testimonial cards should use a uniform desktop/tablet card height with internal scrolling for longer review text. This behavior is scoped in `assets/css/editorial-pages.css` under `.editorial-page--reviews .editorial-review-card`; on mobile the cards return to natural height with no internal scroll.
 - The internal review scrollbar on `reviews-new.html` is custom-styled in `assets/css/editorial-pages.css` to match the navy/gold site language instead of the browser default.
 
