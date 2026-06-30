@@ -182,10 +182,10 @@ Canonical sitewide contact details are now:
 - WhatsApp:
   - link target: `https://wa.me/19544107418`
 - mailing address:
-  - `2630 W Broward Blvd Suite 203 #1134 33312`
-  - `Fort Lauderdale, United States`
+  - `2630 W Broward Blvd Suite 203 #1134`
+  - `Fort Lauderdale, FL 33312`
   - footer/address blocks should link to:
-    - `https://maps.google.com/?q=2630%20W%20Broward%20Blvd%20Suite%20203%20%231134%2033312,%20Fort%20Lauderdale,%20United%20States`
+    - `https://maps.google.com/?q=2630%20W%20Broward%20Blvd%20Suite%20203%20%231134%20Fort%20Lauderdale,%20FL%2033312`
 
 Footer review logo links are now:
 
