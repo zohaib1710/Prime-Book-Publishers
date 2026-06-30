@@ -222,7 +222,7 @@ i.fa.fa-star {
 
 
     #sticky-social-icons-container.hide-in-mobile {
-        display: none !important;
+        display: block !important;
     }
 
 
@@ -7728,8 +7728,13 @@ body.service-reviews-enhanced .homepage-reviews-slider .homepage-review-card--ce
 }
 
 @media (max-width: 767px) {
-    #sticky-social-icons-container.site-contact-rail {
-        display: none !important;
+    #sticky-social-icons-container.hide-in-mobile,
+    #sticky-social-icons-container.site-contact-rail,
+    #sticky-social-icons-container {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
     }
 }
 

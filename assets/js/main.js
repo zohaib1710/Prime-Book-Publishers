@@ -270,12 +270,17 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    const rail = document.getElementById('sticky-social-icons-container');
+    let rail = document.getElementById('sticky-social-icons-container');
     if (!rail) {
-        return;
+        rail = document.createElement('div');
+        rail.id = 'sticky-social-icons-container';
+        rail.className = 'design-rounded alignment-left with-animation';
+        rail.setAttribute('aria-hidden', 'false');
+        document.body.appendChild(rail);
     }
 
     rail.setAttribute('aria-label', 'Quick contact links');
+    rail.classList.remove('hide-in-mobile');
     rail.classList.add('site-contact-rail');
     rail.innerHTML = [
         '<ul>',
