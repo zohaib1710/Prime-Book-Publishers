@@ -1070,3 +1070,135 @@ Current package truths:
   - check the bottom of `assets/css/main.css`
 - For new About / Portfolio / Reviews page issues:
   - check `assets/css/editorial-pages.css`
+
+## Latest Handoff Update - 2026-07-01
+
+If anything above conflicts with this section, trust this section first.
+
+### Current Workspace Path
+
+The active workspace in the latest sessions is:
+
+`c:\Prime Book Publishers`
+
+### Legal Pages
+
+- `terms-and-conditions.html` and `privacy-policy.html` keep the current Prime legal-page design and layout.
+- Their main `.policy-shell` body content was replaced from:
+  - `https://primebookpublishinglabs.com/terms-conditions/`
+  - `https://primebookpublishinglabs.com/privacy-policy/`
+- Do not replace the surrounding Prime header/footer/legal shell unless explicitly asked.
+
+### Canonical Address
+
+The current sitewide address is:
+
+- `2630 W Broward Blvd Suite 203 #1134`
+- `Fort Lauderdale, FL 33312`
+
+Associated Google Maps links and JSON-LD postal code were updated to match this address.
+
+### Encoding / Weird Character Fixes
+
+- Service pages previously had visible replacement-character artifacts, especially broken apostrophes in words like "Let's".
+- Those were cleaned up across the website where found.
+- Important later incident: during the Zendesk cleanup, some root HTML files temporarily gained duplicate UTF-8 BOM bytes or blank lines before `<!doctype html>`, causing a hosted-only white strip at the top of pages.
+- Final fix: all real root HTML pages were normalized so `<!doctype html>` is the first content in the file.
+- `assets/css/main.css` also now explicitly resets:
+  - `html, body { margin: 0 !important; padding-top: 0 !important; }`
+- If hosted-only top whitespace reappears, first check for bytes/content before `<!doctype html>`.
+
+### Zendesk Chat
+
+The old chat system was removed.
+
+Removed/cleaned:
+
+- old `$zopim` references
+- old `hancockghostwritershelp` Zendesk comments/blocks
+- old key `053e2c67-be01-471b-bd16-852776fdb086`
+- old `snippeta6cf` static script references
+- hardcoded page-level `ze-snippet` tags
+
+Current Zendesk integration:
+
+- `assets/js/main.js` is the single source of truth.
+- It injects:
+  - `https://static.zdassets.com/ekr/snippet.js?key=3928d221-6f4b-41fe-a0c7-121aed1653d2`
+- It exposes:
+  - `window.setButtonURL`
+  - `window.toggleChat`
+- Those functions open the Zendesk widget via the Zendesk API.
+- The visible chat launcher should be rendered by Zendesk itself, not by a custom hardcoded button.
+- A temporary hardcoded fallback button with id `site-zendesk-launcher` was added and then removed. It should not exist in HTML, CSS, or JS.
+- The left rail Live Chat item calls the Zendesk open function and should continue to work.
+
+### Left Contact Rail
+
+The left contact/sidebar rail should be visible on all pages and all devices.
+
+Implementation:
+
+- `assets/js/main.js` now creates `#sticky-social-icons-container` if the page does not already have one.
+- It normalizes the rail content to:
+  - Live Chat
+  - Phone
+  - Whatsapp
+  - Instagram
+  - Facebook
+- It removes `hide-in-mobile` and adds `site-contact-rail`.
+- `assets/css/main.css` overrides old mobile hide behavior so the rail remains visible on mobile.
+
+### Mobile / Non-Desktop Hero Backgrounds
+
+For mobile/non-desktop only:
+
+- Homepage hero uses `assets/img/home-section-blue-plain.png`.
+- Service page heroes using `.service-hero-bg` use `assets/img/home-section-blue-plain.png`.
+- Editorial pages use `assets/img/home-section-blue-plain.png` below desktop width:
+  - `about-us-new.html`
+  - `reviews-new.html`
+  - `portfolio-new.html`
+
+Desktop hero backgrounds should remain unchanged.
+
+### Mobile / Non-Desktop Header White Strip Fixes
+
+Several fixes were made for white space above mobile/tablet headers:
+
+- Shared mobile header offset is intended to be small but present, around `8px`, not stuck to the top and not with a large blank strip.
+- `contact-us.html`, `privacy-policy.html`, and `terms-and-conditions.html` use `legal-nav-shell` for their nav wrapper to collapse Bootstrap container spacing on non-desktop views.
+- Editorial page header top offsets are in `assets/css/editorial-pages.css`.
+- Homepage-specific header behavior still has important inline CSS in `index.html`.
+
+### Service Package Cards On Mobile
+
+The "Our Packages" section on service pages uses:
+
+- `.pricing-section--editing-process`
+- `.pack-main-wrapper`
+- `.pricing`
+- `.pkg-list`
+
+Current mobile/non-desktop behavior:
+
+- package wrappers are wider and centered below desktop width
+- package cards have a fixed visual height using `box-sizing: border-box`
+- `.pkg-list` scrolls internally instead of expanding the whole card
+- desktop rules are intentionally unchanged
+
+Relevant file:
+
+- `assets/css/main.css`
+
+### Current Root Page Doctype Cleanliness
+
+After the Zendesk cleanup and hosted-only whitespace fix, all real root HTML pages should start directly with:
+
+```html
+<!doctype html>
+```
+
+No duplicate BOM bytes, blank lines, or other text should appear before it.
+
+Check this before blaming CSS if a hosted-only top strip appears again.

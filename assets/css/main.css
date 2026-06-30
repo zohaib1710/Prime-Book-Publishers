@@ -4539,6 +4539,61 @@ body:not(.homepage-index) {
     box-shadow: 0 20px 40px rgba(212, 165, 90, 0.36);
 }
 
+.is-formspree-ajax :is(button[type="submit"], input[type="submit"], .hero-form-submit, .btn-form, .submit-button).is-submitting {
+    opacity: 0.82 !important;
+    pointer-events: none !important;
+}
+
+.is-formspree-ajax :is(button[type="submit"], input[type="submit"], .hero-form-submit, .btn-form, .submit-button).is-success {
+    background: #20a844 !important;
+    border-color: #20a844 !important;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+    box-shadow: 0 10px 24px rgba(32, 168, 68, 0.28) !important;
+}
+
+.is-formspree-ajax :is(button[type="submit"], input[type="submit"], .hero-form-submit, .btn-form, .submit-button).is-success:hover {
+    background: #20a844 !important;
+    border-color: #20a844 !important;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+    transform: none !important;
+}
+
+.formspree-ajax-message,
+.hero-form-ajax-message {
+    display: none;
+    margin-top: 8px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.formspree-ajax-message.is-visible,
+.hero-form-ajax-message.is-visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.formspree-ajax-message.is-success,
+.hero-form-ajax-message.is-success {
+    background: #20a844;
+    color: #fff;
+}
+
+.formspree-ajax-message.is-error,
+.hero-form-ajax-message.is-error {
+    background: rgba(185, 28, 28, 0.92);
+    color: #fff;
+}
+
 .service-hero-form-shell {
     justify-content: flex-end;
 }
@@ -8568,8 +8623,8 @@ html body .sitewide-offer-popup .offer-head__badge {
 }
 
 html body .sitewide-offer-popup .offer-head__badge img {
-    width: 32px;
-    height: 32px;
+    width: 54px;
+    height: 54px;
     object-fit: contain;
 }
 
@@ -8852,8 +8907,8 @@ html body .sitewide-offer-popup .error {
     }
 
     html body .sitewide-offer-popup .offer-head__badge img {
-        width: 24px;
-        height: 24px;
+        width: 44px;
+        height: 44px;
     }
 
     html body .sitewide-offer-popup .offer-tagline {

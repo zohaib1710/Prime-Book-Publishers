@@ -1095,6 +1095,52 @@ document.addEventListener("DOMContentLoaded", function () {
     transition: background 0.2s ease, transform 0.2s ease;
   }
 
+  .hero-form-submit.is-submitting {
+    opacity: 0.82;
+    pointer-events: none;
+  }
+
+  .hero-form-submit.is-success {
+    background: #20a844 !important;
+    color: #fff !important;
+    box-shadow: 0 10px 24px rgba(32, 168, 68, 0.28) !important;
+  }
+
+  .hero-form-submit.is-success:hover {
+    background: #20a844 !important;
+    transform: none;
+  }
+
+  .hero-form-ajax-message {
+    display: none;
+    margin-top: 8px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+  }
+
+  .hero-form-ajax-message.is-visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hero-form-ajax-message.is-success {
+    background: #20a844;
+    color: #fff;
+  }
+
+  .hero-form-ajax-message.is-error {
+    background: rgba(185, 28, 28, 0.92);
+    color: #fff;
+  }
+
   .hero-form-submit:hover {
     background: #1F2937;
     transform: translateY(-1px);
@@ -3297,7 +3343,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 title="Prime Book Publishing Labs logo" loading="eager" decoding="async">
                         </div>
                         <h3 class="hero-form-title" style="color: #fff !important;">Become A Published Author</h3>
-                        <form class="hero-lead-form" action="https://hancockpublishers.com/backend/action/action" method="POST">
+                        <form class="hero-lead-form" action="https://formspree.io/f/xgojlbdl" method="POST" data-homepage-hero-form>
                             <input type="hidden" name="type" value="formlongsiteMain">
 
                             <div class="hero-form-field">
@@ -3356,6 +3402,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
 
                             <button type="submit" class="hero-form-submit">Submit Your Form</button>
+                            <div class="hero-form-ajax-message" data-homepage-hero-form-message role="status" aria-live="polite"></div>
                         </form>
                     </div>
                 </div>
@@ -3367,8 +3414,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 </div>
-
-
 
 <script>
     (function () {
@@ -4689,7 +4734,7 @@ document.addEventListener("DOMContentLoaded", function () {
 								title="Prime Book Publishing Labs logo" loading="eager" decoding="async">
 						</div>
 						<h3 class="hero-form-title">Become A Published Author</h3>
-						<form class="main-form hero-lead-form hero-lead-form--secondary" action="https://hancockpublishers.com/backend/action/action" method="POST">
+						<form class="main-form hero-lead-form hero-lead-form--secondary" action="https://formspree.io/f/xgojlbdl" method="POST">
 							<input type="hidden" name="type" value="formlongsiteMain">
 
 							<div class="hero-form-field">
@@ -5050,8 +5095,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         .offer-head__badge img {
-            width: 32px;
-            height: 32px;
+            width: 54px;
+            height: 54px;
             object-fit: contain;
         }
 
@@ -5405,8 +5450,8 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             .offer-head__badge img {
-                width: 24px;
-                height: 24px;
+                width: 44px;
+                height: 44px;
             }
 
             .offer-tagline {
@@ -5508,7 +5553,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             aria-label="Close">✕</button>
                         <div class="offer-head">
                             <div class="offer-head__badge">
-                                <img src="assets/img/prime-logo.png" alt="Prime Book Publishing Labs">
+                                <img src="assets/img/prime-logo1.png" alt="Prime Book Publishing Labs">
                             </div>
                             <div class="offer-head__copy">
                                 <p class="offer-tagline">Start Your Publishing Journey</p>
@@ -5517,7 +5562,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
                         </div>
 
-                        <form class="main-form" id="popupMainForm" action="https://hancockpublishers.com/backend/action/action" method="POST">
+                        <form class="main-form" id="popupMainForm" action="https://formspree.io/f/xgojlbdl" method="POST">
                             <input type="hidden" name="type" value="formlongsiteMain">
                             <!-- <input type="hidden" name="cf-turnstile-response" id="turnstile-popup-token" value=""> -->
 
@@ -6492,8 +6537,8 @@ document.addEventListener('DOMContentLoaded', function () {
       <div class="container">
         <div class="row">
           <div class="ban-form">
-            <!--<form class="form-get-quote" id="ordernow-form" action="https://agilewebstudios.com/shopify/javascript;" method="post">-->
-            <form method="POST" action="https://hancockpublishers.com/backend/action/action">
+            <!--<form class="form-get-quote" id="ordernow-form" action="https://formspree.io/f/xgojlbdl" method="post">-->
+            <form method="POST" action="https://formspree.io/f/xgojlbdl">
               <input type="hidden" name="type" value="formlongsiteMain" />
               <!-- <input type="hidden" name="cta" class="cta" value="">
                             <div class="alert alert-danger error" style="display: none;"></div> -->

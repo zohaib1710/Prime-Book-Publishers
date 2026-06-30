@@ -63,6 +63,163 @@
 })();
 
 (function () {
+    var formspreeEndpoint = 'https://formspree.io/f/xgojlbdl';
+    var successText = 'Thank You! Your submission has been received';
+    var errorText = 'Something went wrong. Please try again.';
+
+    function getSubmitControl(form) {
+        return form.querySelector('button[type="submit"], input[type="submit"], button:not([type]), .hero-form-submit, .btn-form, .submit-button');
+    }
+
+    function getSubmitText(control) {
+        if (!control) {
+            return '';
+        }
+
+        return control.tagName === 'INPUT' ? control.value : control.textContent;
+    }
+
+    function setSubmitText(control, text) {
+        if (!control) {
+            return;
+        }
+
+        if (control.tagName === 'INPUT') {
+            control.value = text;
+        } else {
+            control.textContent = text;
+        }
+    }
+
+    function setSubmitSuccess(control) {
+        if (!control) {
+            return;
+        }
+
+        control.disabled = false;
+        setSubmitText(control, successText);
+        control.classList.remove('is-submitting');
+        control.classList.add('is-success');
+        control.style.setProperty('background', '#20a844', 'important');
+        control.style.setProperty('background-color', '#20a844', 'important');
+        control.style.setProperty('background-image', 'none', 'important');
+        control.style.setProperty('border-color', '#20a844', 'important');
+        control.style.setProperty('color', '#fff', 'important');
+        control.style.setProperty('-webkit-text-fill-color', '#fff', 'important');
+    }
+
+    function getMessageElement(form, submitControl) {
+        var message = form.querySelector('[data-formspree-ajax-message], [data-homepage-hero-form-message], .formspree-ajax-message, .hero-form-ajax-message');
+        if (message) {
+            return message;
+        }
+
+        message = document.createElement('div');
+        message.className = 'formspree-ajax-message';
+        message.setAttribute('data-formspree-ajax-message', '');
+        message.setAttribute('role', 'status');
+        message.setAttribute('aria-live', 'polite');
+
+        if (submitControl && submitControl.parentNode) {
+            submitControl.insertAdjacentElement('afterend', message);
+        } else {
+            form.appendChild(message);
+        }
+
+        return message;
+    }
+
+    function setMessage(message, text, type) {
+        if (!message) {
+            return;
+        }
+
+        message.textContent = text;
+        message.classList.remove('is-visible', 'is-success', 'is-error');
+
+        if (text) {
+            message.classList.add('is-visible', type === 'success' ? 'is-success' : 'is-error');
+        }
+    }
+
+    function resetSubmitControl(control) {
+        if (!control) {
+            return;
+        }
+
+        control.disabled = false;
+        setSubmitText(control, control.getAttribute('data-formspree-default-text') || 'Submit');
+        control.classList.remove('is-submitting', 'is-success');
+        control.style.removeProperty('background');
+        control.style.removeProperty('background-color');
+        control.style.removeProperty('background-image');
+        control.style.removeProperty('border-color');
+        control.style.removeProperty('color');
+        control.style.removeProperty('-webkit-text-fill-color');
+    }
+
+    document.addEventListener('submit', function (event) {
+        var form = event.target;
+
+        if (!form || form.tagName !== 'FORM' || form.hasAttribute('data-formspree-ignore')) {
+            return;
+        }
+
+        if (event.defaultPrevented) {
+            return;
+        }
+
+        event.preventDefault();
+
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
+        var submitControl = getSubmitControl(form);
+        var message = getMessageElement(form, submitControl);
+
+        form.classList.add('is-formspree-ajax');
+        form.setAttribute('data-formspree-ajax-ready', 'true');
+
+        if (submitControl && !submitControl.hasAttribute('data-formspree-default-text')) {
+            submitControl.setAttribute('data-formspree-default-text', getSubmitText(submitControl));
+        }
+
+        setMessage(message, '', '');
+
+        if (submitControl) {
+            submitControl.disabled = true;
+            setSubmitText(submitControl, 'Submitting...');
+            submitControl.classList.remove('is-success');
+            submitControl.classList.add('is-submitting');
+        }
+
+        fetch(formspreeEndpoint, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: {
+                Accept: 'application/json'
+            }
+        })
+            .then(function (response) {
+                if (!response.ok) {
+                    throw new Error('Formspree submission failed');
+                }
+
+                form.reset();
+
+                setSubmitSuccess(submitControl);
+                setMessage(message, '', '');
+            })
+            .catch(function () {
+                resetSubmitControl(submitControl);
+                setMessage(message, errorText, 'error');
+            });
+    });
+})();
+
+(function () {
     var servicePages = [
         'audiobook-service.html',
         'author-website-design.html',
@@ -1109,7 +1266,7 @@ document.addEventListener('DOMContentLoaded', function () {
             '            <p class="offer-sub">Fill in the details below and our team will help you move your book project forward with clarity and confidence.</p>',
             '          </div>',
             '        </div>',
-            '        <form class="main-form" id="popupMainForm" action="https://hancockpublishers.com/backend/action/action" method="POST">',
+            '        <form class="main-form" id="popupMainForm" action="https://formspree.io/f/xgojlbdl" method="POST">',
             '          <input type="hidden" name="type" value="formlongsiteMain">',
             '          <div class="pf-row pf-row--two-col">',
             '            <div class="pf-col">',
