@@ -266,7 +266,7 @@
 
             window.setTimeout(function () {
                 popupInstance.show();
-            }, 3000);
+            }, 20000);
         }
 
         bindPopup(0);
@@ -1355,7 +1355,7 @@ document.addEventListener('DOMContentLoaded', function () {
         window.setTimeout(function () {
             popupInstance.show();
             sessionStorage.setItem(popupSessionKey, '1');
-        }, 3000);
+        }, 20000);
     }
 });
 

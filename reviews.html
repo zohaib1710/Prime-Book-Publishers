@@ -2399,12 +2399,12 @@ if (document.readyState === 'loading') {
                     keyboard: true
                 });
 
-                // Auto-open after 3 seconds (only once per session)
+                // Auto-open after 20 seconds (only once per session)
                 if (!sessionStorage.getItem('offerShown')) {
                     setTimeout(function () {
                         modalInstance.show();
                         sessionStorage.setItem('offerShown', '1');
-                    }, 3000);
+                    }, 20000);
                 }
 
                 // Close button handler
@@ -2601,11 +2601,11 @@ if (document.readyState === 'loading') {
 		modalElement.classList.remove('show');
 		modalElement.style.display = 'none';
 
-		// Show modal after 10 seconds
+		// Show modal after 20 seconds
 		setTimeout(function () {
 			var myModal = new bootstrap.Modal(modalElement);
 			myModal.show();
-		}, 1000);
+		}, 20000);
 	});
 </script>
 
@@ -2877,7 +2877,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(function () {
       var myModal = new bootstrap.Modal(document.getElementById('mainpopupform'));
       myModal.show();
-    }, 10000); // 10000 milliseconds = 10 seconds
+    }, 20000); // 20000 milliseconds = 20 seconds
   });
 </script> -->
 <!-- end loading script -->
