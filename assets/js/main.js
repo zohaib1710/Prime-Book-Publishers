@@ -1,4 +1,24 @@
 (function () {
+    var zendeskSnippetId = 'ze-snippet';
+    var zendeskSnippetSrc = 'https://static.zdassets.com/ekr/snippet.js?key=3928d221-6f4b-41fe-a0c7-121aed1653d2';
+    var existingZendeskScript = document.getElementById(zendeskSnippetId);
+
+    if (existingZendeskScript) {
+        if (existingZendeskScript.getAttribute('src') !== zendeskSnippetSrc) {
+            existingZendeskScript.parentNode.removeChild(existingZendeskScript);
+        } else {
+            return;
+        }
+    }
+
+    var zendeskScript = document.createElement('script');
+    zendeskScript.id = zendeskSnippetId;
+    zendeskScript.src = zendeskSnippetSrc;
+    zendeskScript.async = true;
+    document.head.appendChild(zendeskScript);
+})();
+
+(function () {
     var servicePages = [
         'audiobook-service.html',
         'author-website-design.html',
