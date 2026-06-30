@@ -63,6 +63,18 @@
 })();
 
 (function () {
+    document.addEventListener('click', function (event) {
+        var callLink = event.target && event.target.closest ? event.target.closest('a[href^="tel:"]') : null;
+        if (callLink) {
+            var telHref = callLink.getAttribute('href').replace(/\s+/g, '');
+            callLink.setAttribute('href', telHref);
+            event.stopImmediatePropagation();
+            window.location.href = telHref;
+        }
+    }, true);
+})();
+
+(function () {
     var formspreeEndpoint = 'https://formspree.io/f/xgojlbdl';
     var successText = 'Thank You! Your submission has been received';
     var errorText = 'Something went wrong. Please try again.';
@@ -1164,6 +1176,7 @@ $('.count').each(function () {
 // video caousel 
 
 
+if (typeof GLightbox === 'function') {
 var lightbox = GLightbox();
     lightbox.on('open', (target) => {
         console.log('lightbox opened');
@@ -1205,6 +1218,7 @@ var lightbox = GLightbox();
     var lightboxInlineIframe = GLightbox({
         selector: '.glightbox4'
     });
+}
 
 // anas js    
 
@@ -1312,7 +1326,7 @@ document.addEventListener('DOMContentLoaded', function () {
             '            </div>',
             '          </div>',
             '          <div class="pf-row">',
-            '            <div class="pf-col pf-full"><div class="form-group pt-40"><button type="submit" name="submit_contact" class="btn-form btn-hover cta-btn-small w-100 pf-btn">Start My Publishing Journey</button></div></div>',
+            '            <div class="pf-col pf-full"><div class="form-group pt-40"><button type="submit" name="submit_contact" class="btn-form btn-hover cta-btn-small w-100 pf-btn">Submit Your Form</button></div></div>',
             '          </div>',
             '        </form>',
             '      </div>',

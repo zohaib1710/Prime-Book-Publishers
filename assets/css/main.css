@@ -7809,10 +7809,10 @@ body.service-reviews-enhanced .homepage-reviews-slider .homepage-review-card--ce
     #sticky-social-icons-container.hide-in-mobile,
     #sticky-social-icons-container.site-contact-rail,
     #sticky-social-icons-container {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        pointer-events: auto !important;
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
     }
 }
 
