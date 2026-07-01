@@ -547,7 +547,6 @@ document.addEventListener('DOMContentLoaded', function () {
     rail.innerHTML = [
         '<ul>',
         '<li class="site-contact-rail__item site-contact-rail__item--chat"><a href="javascript:void(0)" class="site-contact-rail__link site-contact-rail__link--chat" aria-label="Live Chat"><i class="fas fa-comments" aria-hidden="true"></i><span>Live Chat</span></a></li>',
-        '<li class="site-contact-rail__item"><a href="tel:+14076800272" class="site-contact-rail__link" aria-label="Phone"><i class="fas fa-phone" aria-hidden="true"></i><span>Phone</span></a></li>',
         '<li class="site-contact-rail__item"><a href="https://wa.me/19544107418" target="_blank" rel="noopener" class="site-contact-rail__link" aria-label="Whatsapp"><i class="fab fa-whatsapp" aria-hidden="true"></i><span>Whatsapp</span></a></li>',
         '<li class="site-contact-rail__item"><a href="https://www.instagram.com/primebookpublishinglabs?igsh=enMycTZ1c3R1N3h3" target="_blank" rel="noopener" class="site-contact-rail__link" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i><span>Instagram</span></a></li>',
         '<li class="site-contact-rail__item"><a href="https://www.facebook.com/share/199TppQJES/?mibextid=wwXIfr" target="_blank" rel="noopener" class="site-contact-rail__link" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i><span>Facebook</span></a></li>',
@@ -568,6 +567,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 window.zE('webWidget', 'open');
             }
         });
+    }
+
+    let callTab = document.querySelector('.site-call-tab');
+    if (!callTab) {
+        callTab = document.createElement('a');
+        callTab.className = 'site-call-tab';
+        callTab.href = 'tel:+14076800272';
+        callTab.setAttribute('aria-label', 'Call Now');
+        callTab.innerHTML = '<i class="fas fa-phone" aria-hidden="true"></i><span>Call Now</span>';
+        document.body.appendChild(callTab);
     }
 });
 
