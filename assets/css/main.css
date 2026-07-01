@@ -7809,9 +7809,11 @@ body.service-reviews-enhanced .homepage-reviews-slider .homepage-review-card--ce
     height: 196px !important;
     padding: 0 !important;
     border-radius: 30px 0 0 30px !important;
-    background-image: var(--site-metal-gold-gradient, linear-gradient(180deg, #F9EC79 0%, #F4D95E 18%, #DDB447 40%, #C9962D 60%, #AE7D1E 80%, #7D5510 100%)) !important;
+    background:
+        linear-gradient(var(--theme-navy-rich, #061c45), var(--theme-navy-rich, #061c45)) padding-box,
+        var(--site-metal-gold-gradient, linear-gradient(180deg, #F9EC79 0%, #F4D95E 18%, #DDB447 40%, #C9962D 60%, #AE7D1E 80%, #7D5510 100%)) border-box !important;
     color: #061c45 !important;
-    border: 2px solid #061c45 !important;
+    border: 2px solid transparent !important;
     border-right: 0 !important;
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28) !important;
     text-decoration: none !important;
@@ -7821,7 +7823,11 @@ body.service-reviews-enhanced .homepage-reviews-slider .homepage-review-card--ce
 
 .site-call-tab span {
     display: block !important;
-    color: #061c45;
+    color: var(--theme-gold, #D4A55A) !important;
+    background: var(--site-metal-gold-gradient, linear-gradient(180deg, #F9EC79 0%, #F4D95E 18%, #DDB447 40%, #C9962D 60%, #AE7D1E 80%, #7D5510 100%)) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
     font-size: 17px !important;
     font-weight: 900 !important;
     line-height: 1 !important;
@@ -7830,7 +7836,6 @@ body.service-reviews-enhanced .homepage-reviews-slider .homepage-review-card--ce
     writing-mode: vertical-rl !important;
     transform: rotate(180deg) !important;
     white-space: nowrap !important;
-    animation: siteCallTabBlink 0.8s steps(1, end) infinite !important;
 }
 
 .site-call-tab i {
@@ -7840,27 +7845,12 @@ body.service-reviews-enhanced .homepage-reviews-slider .homepage-review-card--ce
 .site-call-tab:hover,
 .site-call-tab:focus-visible {
     width: 64px !important;
-    background-image: var(--site-metal-gold-gradient, linear-gradient(180deg, #F9EC79 0%, #F4D95E 18%, #DDB447 40%, #C9962D 60%, #AE7D1E 80%, #7D5510 100%)) !important;
+    background:
+        linear-gradient(#082653, #061c45) padding-box,
+        var(--site-metal-gold-gradient, linear-gradient(180deg, #F9EC79 0%, #F4D95E 18%, #DDB447 40%, #C9962D 60%, #AE7D1E 80%, #7D5510 100%)) border-box !important;
     color: #061c45 !important;
     outline: none !important;
     box-shadow: 0 20px 46px rgba(0, 0, 0, 0.34) !important;
-}
-
-@keyframes siteCallTabBlink {
-    0% {
-        color: #061c45;
-        text-shadow: none;
-    }
-
-    50% {
-        color: #fff;
-        text-shadow: none;
-    }
-
-    100% {
-        color: #061c45;
-        text-shadow: none;
-    }
 }
 
 .bottom-reviews,
