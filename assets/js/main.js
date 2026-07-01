@@ -233,6 +233,7 @@
 
 (function () {
     var servicePages = [
+        'services.html',
         'audiobook-service.html',
         'author-website-design.html',
         'book-cover-design.html',
@@ -254,6 +255,20 @@
             return;
         }
 
+        function cleanupServicePopupState() {
+            document.querySelectorAll('.modal-backdrop').forEach(function (backdrop) {
+                backdrop.remove();
+            });
+            document.body.classList.remove('modal-open');
+            document.body.style.removeProperty('overflow');
+            document.body.style.removeProperty('padding-right');
+            modalElement.classList.remove('show');
+            modalElement.style.display = 'none';
+            modalElement.setAttribute('aria-hidden', 'true');
+            modalElement.removeAttribute('aria-modal');
+            modalElement.removeAttribute('role');
+        }
+
         function bindPopup(attempt) {
             if (!window.bootstrap || !window.bootstrap.Modal) {
                 if (attempt < 25) {
@@ -270,9 +285,23 @@
             });
 
             document.querySelectorAll('[href="#mainpopupform"], [data-bs-target="#mainpopupform"]').forEach(function (trigger) {
+                if (trigger.dataset.servicePopupBound === 'true') {
+                    return;
+                }
+                trigger.dataset.servicePopupBound = 'true';
                 trigger.addEventListener('click', function (event) {
                     event.preventDefault();
                     popupInstance.show();
+                });
+            });
+
+            modalElement.addEventListener('hidden.bs.modal', cleanupServicePopupState);
+            modalElement.addEventListener('hide.bs.modal', function () {
+                window.setTimeout(cleanupServicePopupState, 450);
+            });
+            modalElement.querySelectorAll('[data-bs-dismiss="modal"], .popup-close').forEach(function (closeButton) {
+                closeButton.addEventListener('click', function () {
+                    window.setTimeout(cleanupServicePopupState, 450);
                 });
             });
 
@@ -1243,6 +1272,20 @@ document.addEventListener('DOMContentLoaded', function () {
     if (currentPage === 'index.html') {
         return;
     }
+    var servicePages = [
+        'audiobook-service.html',
+        'author-website-design.html',
+        'book-cover-design.html',
+        'book-editing-services.html',
+        'book-illustration-services.html',
+        'book-marketing-services.html',
+        'book-publishing-services.html',
+        'ghostwriting-services.html',
+        'services.html'
+    ];
+    if (servicePages.indexOf(currentPage) !== -1) {
+        return;
+    }
     var popupSessionKey = 'offerShown:' + currentPage;
 
     function buildSitewidePopupInnerMarkup() {
@@ -1273,7 +1316,7 @@ document.addEventListener('DOMContentLoaded', function () {
             '      <div class="offer-right">',
             '        <button class="popup-close" id="offerClose" type="button" data-bs-dismiss="modal" aria-label="Close">&times;</button>',
             '        <div class="offer-head">',
-            '          <div class="offer-head__badge"><img src="assets/img/prime-logo.png" alt="Prime Book Publishing Labs"></div>',
+            '          <div class="offer-head__badge"><img src="assets/img/prime-logo1.png" alt="Prime Book Publishing Labs"></div>',
             '          <div class="offer-head__copy">',
             '            <p class="offer-tagline">Start Your Publishing Journey</p>',
             '            <h2>Become A Published Author</h2>',
@@ -1372,4 +1415,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 20000);
     }
 });
-
