@@ -9135,8 +9135,8 @@ button.btn-form * {
 
 .service-hero-bg .header-counter .count {
     text-shadow:
-        0 4px 10px rgba(0, 0, 0, 0.34),
-        0 9px 20px rgba(0, 0, 0, 0.2) !important;
+        /* 0 4px 10px rgba(0, 0, 0, 0.34),
+        0 9px 20px rgba(0, 0, 0, 0.2) !important; */
 }
 
 .service-hero-bg .header-counter .count-title {
